@@ -1,1 +1,42 @@
-theme: jekyll-theme-dinky
+title: Developer blog!
+description: > # this means to ignore newlines until "baseurl:"
+  An awesome developer blog!
+permalink: '/:year/:title/'
+#baseurl: "/" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+site-twitter: #if your site has a twitter account, enter it here
+
+# Author Settings
+author: Lucas Bonanni # add your name
+author-img: post-273862-1257176996.jpg # add your photo
+about-author: I am a full developer. Learning every day. # add description
+social-twitter: ttransistor # add your Twitter handle
+#social-facebook: # add your Facebook handle
+social-github: lucasbonanni # add your Github handle
+#social-linkedin: # add your Linkedin handle
+#social-email: lucas.bonanni@gmail.com # add your Email address
+
+# Disqus
+#discus-identifier: mr-brown # add your discus identifier
+
+# Tracker
+analytics: # Google Analytics
+
+# Build Settings
+markdown: kramdown
+
+#highlighter: rouge
+
+kramdown:
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
+
+paginate: 5
+paginate_path: "/page/:num"
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
