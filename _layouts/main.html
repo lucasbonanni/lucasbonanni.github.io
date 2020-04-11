@@ -9,7 +9,7 @@ layout: default
         <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/assets/img/{% if site.author-img %}{{site.author-img}}{% endif %}" alt="{{site.author}}"></a>
       </div>
       <div class="author-name">{{site.author}}</div>
-      <p>{{site.about-author}}</p>
+      <p>{{site.about-author[site.active_lang]}}</p>
     </div>
   </header> <!-- End Header -->
   <footer>
@@ -37,6 +37,13 @@ layout: default
     </section> <!-- End Section Contact -->
     <div class="copyright">
       <p>{{site.time | date: '%Y'}} &copy; {{site.author}}</p>
+    </div>
+    <div>
+      <p>
+        {% for tongue in site.languages %}
+      <a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} href="{% if tongue == site.default_lang %} {{site.baseurl}}{{page.url}} {% else %} {{site.baseurl}}/{{ tongue }}{{page.url}} {% endif %}">{{ tongue }}</a> |
+        {% endfor %}
+      </p>
     </div>
   </footer> <!-- End Footer -->
 </aside> <!-- End Sidebar -->

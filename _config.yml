@@ -9,7 +9,9 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Lucas Bonanni # add your name
 author-img: post-273862-1257176996.jpg # add your photo
-about-author: I am a full developer. Learning every day. # add description
+about-author:
+  en: I am a full developer. Learning every day. # add description
+  es: Soy un progamador fullstack. Aprendiendo cada día.
 social-twitter: ttransistor # add your Twitter handle
 #social-facebook: # add your Facebook handle
 social-github: lucasbonanni # add your Github handle
@@ -19,8 +21,13 @@ social-github: lucasbonanni # add your Github handle
 # Disqus
 #discus-identifier: mr-brown # add your discus identifier
 
+languages: ["en", "es"]
+default_lang: "en"
+exclude_from_localization: ["assets"]
+parallel_localization: true # In order to run on windows put this on false or run it on linux subsystem or in linux bundle exec jeckyll serve
+
 # Tracker
-analytics: UA-162938324-1 # Google Analytics
+#analytics: UA-162938324-1 # Google Analytics
 
 # Build Settings
 markdown: kramdown
@@ -35,6 +42,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jemoji
+  - jekyll-polyglot
 
 paginate: 5
 paginate_path: "/page/:num"
