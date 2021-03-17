@@ -1,0 +1,11 @@
+- name: c# 
+  percentage: 90
+  color: danger
+
+- name: Angular
+  percentage: 80
+  color:
+
+- name: Python
+  percentage: 30
+  color: dark
