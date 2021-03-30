@@ -129,7 +129,11 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "options": {
+            "baseHref": "https://lucasbonanni.github.io/",
+            "name": "Lucas Bonanni",
+            "email": "bonanni.lucas.esteban@gmail.com"
+          }
         }
       }
     }
