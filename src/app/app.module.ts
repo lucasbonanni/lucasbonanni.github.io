@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './pages/main/main.component';
 import { SocialComponent } from './components/social/social.component';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SocialComponent } from './components/social/social.component';
   ],
   imports: [
     BrowserModule,
+    NgxGoogleAnalyticsModule.forRoot('UA-162938324-1'),
     AppRoutingModule
   ],
   providers: [],
