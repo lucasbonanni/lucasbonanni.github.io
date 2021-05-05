@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './pages/main/main.component';
 import { SocialComponent } from './components/social/social.component';
 import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
+import { AboutMeComponent } from './pages/about-me/about-me.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
     FooterComponent,
     NavbarComponent,
     MainComponent,
-    SocialComponent
+    SocialComponent,
+    AboutMeComponent,
   ],
   imports: [
     BrowserModule,
