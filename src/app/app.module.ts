@@ -10,6 +10,7 @@ import { SocialComponent } from './components/social/social.component';
 import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 import { AboutMeComponent } from './pages/about-me/about-me.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProjectsComponent } from './pages/projects/projects.component';
     SocialComponent,
     AboutMeComponent,
     ProjectsComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,
