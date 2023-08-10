@@ -7,12 +7,12 @@ logo = "images/logo.png"
 # Note: logo_width is not work with .svg file
 logo_width = "150px"
 # logo text will only show when logo is missing.
-logo_text = "Airspace"
+logo_text = "ProgAPIfy"
 # navbar fixed to top
 navbar_fixed = false
 # OpenGraph / Twitter Card metadata
 description = "This is meta description"
-author = "Themefisher"
+author = "ProgAPIfy"
 image = "images/logo.png" # this image will be used as fallback if a page has no image of its own
 # Whether to display text descriptors (like "E-mail: ", "Phone: ") before the address block elements
 address_descriptors = false
@@ -20,12 +20,12 @@ address_descriptors = false
 phone = "+54 11 51759133"
 email = "bonanni.lucas.esteban@gmail.com"
 location = """
-**Themefisher**  
+**ProgAPIfy**  
 Ciudad Autonoma de buenos aires
 Argentina
 """
 # copyright
-copyright = "Designed By [Themefisher](https://themefisher.com/) & Developed By [Gethugothemes](https://gethugothemes.com/)"
+copyright = "Designed By [ProgAPIfy](https://themefisher.com/) & Developed By [Gethugothemes](https://gethugothemes.com/)"
 # custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>" 
 custom_script= ""
 # google tag manager, see https://developers.google.com/tag-manager/
@@ -89,7 +89,7 @@ baidu = "" # Your verification code
 
 # google map
 [gmap]
-enable = true
+enable = false
 gmap_api = "AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU"
 map_latitude = "51.5223477"
 map_longitude = "-0.1622023"
@@ -108,20 +108,20 @@ sidebar = ["recent_posts", "taxonomy_category", "taxonomy_tags"]
 # available widget : categories,tags,recent-post
 
 ############################# social site ########################
-[[social]]
-title = "facebook"
-icon = "fab fa-facebook"  # fontawesome icon pack : https://fontawesome.com/icons/
-link = "#"
+# [[social]]
+# title = "facebook"
+# icon = "fab fa-facebook"  # fontawesome icon pack : https://fontawesome.com/icons/
+# link = "#"
 
-[[social]]
-title = "twitter"
-icon = "fab fa-twitter"  # fontawesome icon pack : https://fontawesome.com/icons/
-link = "#"
+# [[social]]
+# title = "twitter"
+# icon = "fab fa-twitter"  # fontawesome icon pack : https://fontawesome.com/icons/
+# link = "#"
 
-[[social]]
-title = "instagram"
-icon = "fab fa-instagram" # fontawesome icon pack : https://fontawesome.com/icons/
-link = "#"
+# [[social]]
+# title = "instagram"
+# icon = "fab fa-instagram" # fontawesome icon pack : https://fontawesome.com/icons/
+# link = "#"
 
 [[social]]
 title = "github"
