@@ -1,64 +1,231 @@
 ---
-title: "How To Wear Bright Shoes"
+title: "Ansible tips"
 date: 2018-09-24T11:07:10+06:00
-author: John Doe
+author: Lucas Bonanni
 image : "images/blog/blog-post-1.jpg"
 bg_image: "images/feature-bg.jpg"
-categories: ["Company News"]
-tags: ["Advice","Technology"]
+categories: ["ansible"]
+tags: ["ansible","tools"]
 description: "this is meta description"
 draft: false
 type: "post"
 ---
+https://www.redhat.com/sysadmin/faster-ansible-playbook-execution
+## Managing ansible galaxy roles.
+To manage multiple ansible roles that we use from ansible galaxy we can use a requirements.yml with all the roles.
+To install the roles from a requirements file you can run:
+```bash
+ansible-galaxy install -r requirements.yml
+```
+_requirements.yml_
+```yaml
+- src: geerlingguy.apache
 
+- src: https://github.com/bennojoy/nginx
+  version: master
+  name: nginx_role
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit vitae placeat ad architecto nostrum asperiores
-vel aperiam, veniam eum nulla. Maxime cum magnam, adipisci architecto quibusdam cumque veniam fugiat quae. Lorem
-ipsum dolor sit amet, consectetur adipisicing elit. Odio vitae ab doloremque accusamus sit, eos dolorum officiis
-a perspiciatis aliquid. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, facere. </p>
+- src: https://web.localhost.com/files.master.tar.gz
+  name: http-role
 
-> Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes
-nemo minima rerums unsers sadips amets.. Sed ut perspiciatis unde omnis iste natus error
+- src: http://bitbucket.org/willthames/hg-ansible-galaxy
+  scm: hg
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum illo deserunt necessitatibus quibusdam sint,
-eos explicabo tenetur molestiae vero facere, aspernatur sit mollitia perferendis reiciendis. Deleniti magni
-explicabo sed alias fugit amet animi molestias ipsum maiores. Praesentium sint, id laborum quos. Tempora
-inventore est, dolor corporis quis doloremque nostrum, eos velit culpa quasi labore. Provident laborum porro
-nihil iste, magnam officia nemo praesentium autem, libero vel officiis. Omnis pariatur nam voluptatem voluptate
-at officia repellat ea beatae eligendi? Mollitia error saepe, aperiam facere. Optio maiores deleniti veritatis
-eaque commodi atque aperiam, debitis iste alias eligendi ut facilis earum! Impedit, tempore.</p>
+- src: git@git.localnet.com:mygroup/ansible-base.git
+  scm: git
+```
+
+## Ansible.cfg
+### Enable inventory plugins
+You can enable inventory plugins.
+You can use `ansible-doc -t inventory -l` to see the list of available plugins. Use `ansible-doc -t inventory <plugin name>` to see plugin-specific documentation`and examples.
+
+```ini
+[inventory]
+enable_plugins = host_list, scripts, auto, yaml, ini, toml
+```
+Some of plugins that you could find insteresting are.
 
 ```
-  .blog-classic {
-  margin-bottom: 70px;
-  padding-bottom: 70px;
-  border-bottom: 1px solid #efefef;
-  }
+amazon.aws.aws_ec2
+amazon.aws.aws_rds
+amazon.aws.aws_mq
+azure.azcollection.azure_rm
+```
+```
+ansible.builtin.yaml
+ansible.builtin.toml
+ansible.builtin.ini
+```
+```
+community.general.nmap                                 
+community.docker.docker_machine
+community.general.virtualbox
+community.general.proxmox
+```
+I find very interesting the nmap plugin I have give it a try.
+
+The following command will show a graph of the inventory
+`ansible-inventory -i demo.aws_ec2.yml --graph`
+
+## Inventory naming conventions
+[Completar]
+
+## Using dynamic inventory
+`ansible-doc -t inventory -l`
+
+## Optmizations
+### Optimize playbook execution
+
+- Change the number of forks
+- Apply play-level keywords
+- Use a different strategy plugin
+
+### Change the number of forks
+
+```ini
+[defaults]
+forks = 30
 ```
 
+### Apply play-level keywords
+- serial = number
+- serial = percent
+- serial = list of numbers of hosts
 
-* hello
-* hello
-* hello
-* hello
-* hello
+```yaml
+---
+- name: Manage webservers
+  hosts: webservers
+  serial: 5
+```
+```yaml
+---
+- name: Manage webservers
+  hosts: webservers
+  serial:
+    - 1
+    - 5
+    - 10 
+```
 
-1. hello
-2. hello
-3. hello
-4. hello
+### Using throttle keyword
+```yaml
+---
+tasks:
+  - name: Manage webservers
+    command: /sbin/encryptfiles.sh
+    throttle: 1
+```
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex error esse a dolore, architecto sapiente, aliquid
-commodi, laudantium eius nemo enim. Enim, fugit voluptatem rem molestiae. Sed totam quis accusantium iste
-nesciunt id exercitationem cumque repudiandae voluptas perspiciatis, consequatur quasi, molestias, culpa odio
-adipisci. Nesciunt optio fugiat iste quam modi, ex vitae odio pariatur! Corrupti explicabo at harum qui
-doloribus, sit dicta nemo, dolor, enim eum molestias fugiat obcaecati autem eligendi? Nisi delectus eaque
-architecto voluptatibus, unde sit minus quae quod eligendi soluta recusandae doloribus, officia, veritatis
-voluptatum eius aliquam quos. Consectetur, nisi? Veritatis totam, unde nostrum exercitationem tempora suscipit,
-molestias, deserunt ipsum laborum aut iste eaque? Vitae delectus dicta maxime non mollitia? Sapiente eos a quia
-eligendi deserunt repudiandae modi molestias tenetur autem pariatur ullam itaque, quas eveniet, illo quam rerum
-ex obcaecati voluptatum nesciunt incidunt culpa provident illum soluta. Voluptas possimus nesciunt inventore
-perspiciatis neque fugiat, magnam natus repellendus praesentium eum voluptatum, alias incidunt, tempora
-reprehenderit recusandae et numquam itaque ratione dolor voluptatibus in commodi ut! Neque deserunt nostrum
-commodi dolor natus quo, non vitae deleniti, vero voluptatem error aspernatur veniam expedita numquam amet quia
-in dolores velit esse molestiae! Iusto architecto accusantium quisquam recusandae quod vero quia.</p>
+### Using a different strategy
+```yaml
+---
+- name: test play
+  hosts: webservers
+    strategy: free
+    tasks:
+    ...
+```
+
+### Performance tunning 
+- Increase forks
+- Running tasks in parallel
+- Optimize fact gathering
+- Optimize SSH
+
+#### Optimize fact gathering
+- Disable fact gathering
+- Enable partial fact gathering
+- Use facts caching
+
+```yaml
+---
+- name: Manage webservers
+  hosts: webservers
+  gather_facts: no
+```
+
+```yaml
+---
+- name: Manage webservers
+  hosts: webservers
+  gather_facts: false
+  pre_tasks:
+    - setup:
+        gather_subset:
+          - '|all'
+```
+```yaml
+---
+- name: Manage webservers
+  hosts: webservers
+  gather_facts: false
+  pre_tasks:
+    - setup:
+        gather_subset:
+          - '|all'
+          - '|any'
+          - 'network'
+          - 'virtual'
+```
+### User fact caching
+
+```ìni
+[defaults]
+gathering = smart
+fact_caching_connection = /tmp/facts_cache
+fact_caching = jsonfile
+fact_caching_timeout = 7200
+
+```
+
+#### Fact cache backends
+- jsonfile
+- memcached
+- memory
+- mongodb
+- pickle
+- redis
+- yaml
+
+### Listing fact cache plugins
+`ansible-doc -t cache -l`
+`ansible-doc -t cache <plugin name>`
+
+### Optimizing SSH
+- SSH pipelining
+- SSH multiplexing
+- SSH preferred authentications
+- Replace SSH
+
+#### SSH pipelining
+Pipelining reduces the number of connection operations required to execute a module on the remote server, by executing many Ansible modules without actual file transfers.
+
+This can result in a very significant performance improvement when enabled.
+
+However this can conflict with privilege escalation (become). For example, when using sudo operations you must first disable ‘requiretty’ in the sudoers file for the target hosts, which is why this feature is disabled by default.
+
+
+#### SSH multiplexing
+```ini
+[ssh_connection]
+ssh_args = -o ControlMaster=auto -o ControlPersist=60 -o
+PreferredAuthentications=publickey
+control_path=%(directory)s/ansible-ssh-%%h-%%p-%%r
+
+```
+
+#### Preferred Authentication
+```ini
+[ssh_connection]
+ssh_args = -o ControlMaster=auto -o ControlPersist=18000 -o
+PreferredAuthentications=publickey
+control_path=%(directory)s/ansible-ssh-%%h-%%p-%%r
+
+```
+
+#### Time-profiling playbooks
+```ini
+callback_whitelist = timer, mail, profile_tasks
+```
