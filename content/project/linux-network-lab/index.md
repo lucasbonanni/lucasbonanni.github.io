@@ -1,5 +1,5 @@
 ---
-title: Linux iptables
+title: Linux networking lab
 date: 2023-10-26
 # external_link: https://github.com/lucasbonanni/network-linux-lab
 tags:
