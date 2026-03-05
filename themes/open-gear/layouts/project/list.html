@@ -1,0 +1,148 @@
+{{ define "main" }}
+
+{{- /* Collect categories from all project pages */}}
+{{- $pages := .Pages | default (where .Site.RegularPages "Section" "project") }}
+{{- $categories := slice }}
+{{- range $pages }}
+  {{- with .Params.category }}
+    {{- $categories = $categories | append . }}
+  {{- end }}
+{{- end }}
+{{- $categories = $categories | uniq | sort }}
+
+{{- /* Pick the first featured project for the hero card */}}
+{{- $featured := index (where $pages "Params.featured" true | first 1) 0 }}
+
+<!-- HERO STRIP -->
+<section class="hero-strip" aria-label="Page header">
+  <div class="hero-strip__inner">
+    <span class="hero-strip__eyebrow">Portfolio</span>
+    <h1>Projects</h1>
+    <p>Engineering work across platform reliability, CI/CD, cloud infrastructure, observability, and Python services.</p>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section class="section" aria-labelledby="projects-heading">
+  <div class="container">
+    <h2 class="visually-hidden" id="projects-heading">All projects</h2>
+
+    {{- if $featured }}
+    <!-- FEATURED PROJECT -->
+    <div class="section-header" data-animate>
+      <span class="section-label">Featured project</span>
+    </div>
+
+    <div class="featured-card" data-animate data-label="{{ $featured.Params.category | upper | default "PRJ" }}">
+      <div class="featured-card__visual" data-label="{{ $featured.Params.category | upper | default "PRJ" }}" aria-hidden="true">
+        <div class="featured-card__metrics">
+          {{- range $featured.Params.metrics }}
+          <div class="featured-card__metric-item">
+            <div class="metric__num" style="color:var(--color-primary);">{{ .number }}</div>
+            <div class="metric__label" style="color:rgba(255,255,255,0.6);font-size:0.8rem;">{{ .label }}</div>
+          </div>
+          {{- end }}
+        </div>
+      </div>
+      <div class="featured-card__content">
+        <div class="featured-badge">
+          {{ partial "icon.html" "activity" }}
+          {{ $featured.Params.category | default "Project" }}
+        </div>
+        <h2>{{ $featured.Title }}</h2>
+        <p>{{ $featured.Params.description | default $featured.Summary | plainify }}</p>
+        {{- with $featured.Params.tags }}
+        <div class="project-card__tags">
+          {{- range . }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+        {{- end }}
+        {{- if $featured.Content }}
+        <div class="challenge-solution">
+          <div class="cs-block">
+            {{ $featured.Content }}
+          </div>
+        </div>
+        {{- end }}
+        <a href="{{ $featured.RelPermalink }}" class="btn btn-primary" style="margin-top:1.5rem;width:fit-content;">
+          View project {{ partial "icon.html" "arrow-right" }}
+        </a>
+      </div>
+    </div>
+    {{- end }}
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar" role="group" aria-label="Filter projects by category" data-filter-target="projects-grid">
+      <button class="filter-btn active" data-filter="all">
+        All <span class="filter-count">{{ len $pages }}</span>
+      </button>
+      {{- range $cat := $categories }}
+        {{- $count := len (where $pages "Params.category" $cat) }}
+        {{- $slug := $cat | lower | replaceRE `[^a-z0-9]+` "-" | strings.TrimRight "-" }}
+        <button class="filter-btn" data-filter="{{ $slug }}">
+          {{ $cat }} <span class="filter-count">{{ $count }}</span>
+        </button>
+      {{- end }}
+    </div>
+
+    <!-- PROJECT GRID -->
+    <div class="grid-auto" id="projects-grid">
+      {{- range $i, $p := $pages }}
+        {{- $cat := $p.Params.category | default "" }}
+        {{- $catSlug := $cat | lower | replaceRE `[^a-z0-9]+` "-" | strings.TrimRight "-" }}
+        {{- $delay := mod $i 3 }}
+        <article class="card project-card filterable"
+                 {{ if $cat }}data-category="{{ $catSlug }}"{{ end }}
+                 data-animate{{ if gt $delay 0 }} data-animate-delay="{{ $delay }}"{{ end }}>
+          <div class="project-card__header">
+            {{- if $cat }}<span class="project-card__category">{{ $cat }}</span>{{- end }}
+          </div>
+          <h3>{{ $p.Title }}</h3>
+          <p>{{ $p.Params.description | default $p.Summary | plainify | truncate 140 }}</p>
+          {{- with $p.Params.tags }}
+          <div class="project-card__tags">
+            {{- range . }}<span class="tag">{{ . }}</span>{{ end }}
+          </div>
+          {{- end }}
+          {{- with $p.Params.metrics }}
+          <div class="project-card__metrics">
+            {{- range . }}
+            <div class="metric">
+              <span class="metric__num">{{ .number }}</span>
+              <span class="metric__label">{{ .label }}</span>
+            </div>
+            {{- end }}
+          </div>
+          {{- end }}
+          <div style="margin-top:auto;padding-top:1.25rem;">
+            <a href="{{ $p.RelPermalink }}" class="article-card__read-more" aria-label="View {{ $p.Title }}">
+              View {{ partial "icon.html" "arrow-right" }}
+            </a>
+          </div>
+        </article>
+      {{- end }}
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+{{- $author := index (.Site.Taxonomies.authors.ByCount) 0 }}
+<section class="cta-strip" aria-labelledby="projects-cta-title">
+  <div class="container">
+    <span class="section-label" style="color: rgba(255,106,0,0.8);">Work together</span>
+    <h2 id="projects-cta-title" data-animate>Have a project in <em>mind?</em></h2>
+    <p data-animate data-animate-delay="1">I'm available for freelance consulting and senior engineering roles.</p>
+    <div class="cta-strip__actions" data-animate data-animate-delay="2">
+      {{- with $author }}
+        {{- with .Page.Params.socials.linkedin }}
+          <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Connect on LinkedIn</a>
+        {{- end }}
+        {{- with .Page.Params.email }}
+          <a href="mailto:{{ . }}" class="btn btn-white-outline">Send an email</a>
+        {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

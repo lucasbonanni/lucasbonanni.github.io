@@ -132,10 +132,10 @@ commit: feat(blog): add blog list and single post layouts
 ### Phase 5 — Projects
 > Depends on Phase 2. Can run in parallel with Phase 4.
 
-- [ ] `themes/open-gear/layouts/project/list.html` — featured project row + full project grid with filter bar
-- [ ] `themes/open-gear/layouts/project/single.html` — project detail page
-- [ ] Create 3 fresh sample projects under `content/project/` (no migration from `archives/`)
-- [ ] `hugo server -D` builds without errors
+- [x] `themes/open-gear/layouts/project/list.html` — featured project row + full project grid with filter bar
+- [x] `themes/open-gear/layouts/project/single.html` — project detail page
+- [x] Create 3 fresh sample projects under `content/project/` (no migration from `archives/`)
+- [x] `hugo server -D` builds without errors
 
 ```
 commit: feat(projects): add project list and single layouts
