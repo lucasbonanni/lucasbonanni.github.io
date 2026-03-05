@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Lucas Bonanni</title>
+  <meta name="description" content="Selected engineering projects by Lucas Bonanni — Kubernetes, GitOps, Terraform, Python, Observability, and more." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Projects — Lucas Bonanni" />
+  <meta property="og:description" content="Engineering projects across DevOps, cloud infrastructure, observability, and Python services." />
+  <meta property="og:image" content="../images/anton-maksimov-5642-su-sXnp2OfhghE-unsplash.jpg" />
+  <meta property="og:url" content="https://lucasbonanni.com/projects.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://lucasbonanni.com/projects.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23FF6A00'/%3E%3Ccircle cx='50' cy='50' r='28' fill='none' stroke='white' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='12' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Lucas Bonanni — Home">
+        <svg class="nav__logo-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <circle cx="18" cy="18" r="17" stroke="#FF6A00" stroke-width="2"/>
+          <circle cx="18" cy="18" r="8" fill="none" stroke="#FF6A00" stroke-width="2"/>
+          <rect x="16" y="1" width="4" height="6" rx="1" fill="#FF6A00"/>
+          <rect x="16" y="29" width="4" height="6" rx="1" fill="#FF6A00" transform="rotate(180 18 32)"/>
+          <rect x="1" y="16" width="6" height="4" rx="1" fill="#FF6A00"/>
+          <rect x="29" y="16" width="6" height="4" rx="1" fill="#FF6A00"/>
+          <path d="M13 18 C13 15 15 13 18 13 C21 13 22 15 23 18 C24 21 26 23 23 23 C20 23 18 21 18 18 C18 15 16 13 13 13" stroke="#FF6A00" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="nav__logo-text">Lucas <span>Bonanni</span></span>
+      </a>
+      <ul class="nav__links" id="nav-links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="team.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="btn-theme" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Toggle color mode">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <a href="contact.html" class="btn btn-primary" style="padding: 0.55rem 1.15rem; font-size: 0.88rem;">Hire me</a>
+      </div>
+      <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <!-- HERO STRIP -->
+    <section class="hero-strip" aria-label="Page header">
+      <div class="hero-strip__inner">
+        <span class="hero-strip__eyebrow">Portfolio</span>
+        <h1>Projects</h1>
+        <p>Engineering work across platform reliability, CI/CD, cloud infrastructure, observability, and Python services.</p>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 class="visually-hidden" id="projects-heading">All projects</h2>
+
+        <!-- FEATURED PROJECT -->
+        <div class="section-header" data-animate>
+          <span class="section-label">Featured project</span>
+        </div>
+
+        <div class="featured-card" data-animate data-label="OBS">
+          <div class="featured-card__visual" data-label="OBS" aria-hidden="true">
+            <div class="featured-card__metrics">
+              <div class="featured-card__metric-item">
+                <div class="metric__num" style="color:#FF6A00;">40%</div>
+                <div class="metric__label" style="color:rgba(255,255,255,0.6); font-size:0.8rem;">MTTR reduction</div>
+              </div>
+              <div class="featured-card__metric-item">
+                <div class="metric__num" style="color:#FF6A00;">12</div>
+                <div class="metric__label" style="color:rgba(255,255,255,0.6); font-size:0.8rem;">Services instrumented</div>
+              </div>
+              <div class="featured-card__metric-item">
+                <div class="metric__num" style="color:#FF6A00;">99.9%</div>
+                <div class="metric__label" style="color:rgba(255,255,255,0.6); font-size:0.8rem;">Uptime SLO met</div>
+              </div>
+            </div>
+          </div>
+          <div class="featured-card__content">
+            <div class="featured-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Observability
+            </div>
+            <h2>K8s Observability Platform</h2>
+            <p>Designed and deployed a full-stack observability platform on Kubernetes using the OpenTelemetry collector, Prometheus, Grafana dashboards, and Jaeger distributed tracing. The result: engineers finally had a single pane of glass for latency, errors, and infrastructure signals — and could answer "what broke and why" in minutes instead of hours.</p>
+            <div class="project-card__tags">
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Jaeger</span>
+              <span class="tag">OpenTelemetry</span>
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Helm</span>
+            </div>
+            <div class="challenge-solution">
+              <div class="cs-block">
+                <h4>Challenge</h4>
+                <p>12 microservices with no structured logging, no tracing, and alert fatigue caused by threshold-based rules lacking context.</p>
+              </div>
+              <div class="cs-block">
+                <h4>Solution</h4>
+                <p>Standardised OTel instrumentation across all services, SLO-based alerting with error budgets, and automated runbook links in every alert.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar" role="group" aria-label="Filter projects by category" data-filter-target="projects-grid">
+          <button class="filter-btn active" data-filter="all">All <span class="filter-count">6</span></button>
+          <button class="filter-btn" data-filter="platform">Platform <span class="filter-count">1</span></button>
+          <button class="filter-btn" data-filter="ci-cd">CI/CD <span class="filter-count">1</span></button>
+          <button class="filter-btn" data-filter="observability">Observability <span class="filter-count">1</span></button>
+          <button class="filter-btn" data-filter="cloud">Cloud <span class="filter-count">1</span></button>
+          <button class="filter-btn" data-filter="python">Python <span class="filter-count">1</span></button>
+          <button class="filter-btn" data-filter="education">Education <span class="filter-count">1</span></button>
+        </div>
+
+        <!-- PROJECT GRID -->
+        <div class="grid-auto" id="projects-grid">
+
+          <div class="card project-card filterable" data-category="ci-cd" data-animate>
+            <div class="project-card__header">
+              <span class="project-card__category">CI/CD</span>
+            </div>
+            <h3>GitOps CI/CD Pipeline</h3>
+            <p>Rebuilt a fragile Jenkins monolith into a GitOps workflow with ArgoCD and GitHub Actions. Release lead-time dropped from 5 days to 2 hours.</p>
+            <div class="project-card__tags">
+              <span class="tag">ArgoCD</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">Helm</span>
+              <span class="tag">GitOps</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="metric">
+                <span class="metric__num">60%</span>
+                <span class="metric__label">Lead-time cut</span>
+              </div>
+              <div class="metric">
+                <span class="metric__num">4×</span>
+                <span class="metric__label">Deploy frequency</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card filterable" data-category="cloud" data-animate data-animate-delay="1">
+            <div class="project-card__header">
+              <span class="project-card__category">Cloud</span>
+            </div>
+            <h3>Terraform Cloud Foundation</h3>
+            <p>AWS multi-account landing zone with Terraform modules, SSO, and security baselines. 12 accounts delivered from scratch in 6 weeks.</p>
+            <div class="project-card__tags">
+              <span class="tag">Terraform</span>
+              <span class="tag">AWS</span>
+              <span class="tag">SSO</span>
+              <span class="tag">IaC</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="metric">
+                <span class="metric__num">12</span>
+                <span class="metric__label">Accounts managed</span>
+              </div>
+              <div class="metric">
+                <span class="metric__num">0</span>
+                <span class="metric__label">Drift in 6 months</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card filterable" data-category="python" data-animate data-animate-delay="2">
+            <div class="project-card__header">
+              <span class="project-card__category">Python</span>
+            </div>
+            <h3>Python Async API Platform</h3>
+            <p>High-throughput event-processing API built with FastAPI, Redis streams, and PostgreSQL. Handles 50k requests per minute under sustained load.</p>
+            <div class="project-card__tags">
+              <span class="tag">FastAPI</span>
+              <span class="tag">Redis</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Docker</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="metric">
+                <span class="metric__num">50k</span>
+                <span class="metric__label">Req/min</span>
+              </div>
+              <div class="metric">
+                <span class="metric__num">&lt;20ms</span>
+                <span class="metric__label">p99 latency</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card filterable" data-category="platform" data-animate>
+            <div class="project-card__header">
+              <span class="project-card__category">Platform</span>
+            </div>
+            <h3>Incident Response Platform</h3>
+            <p>Integrated PagerDuty, Slack, and Backstage into a unified on-call and incident management workflow, reducing alert noise by 70%.</p>
+            <div class="project-card__tags">
+              <span class="tag">PagerDuty</span>
+              <span class="tag">Slack</span>
+              <span class="tag">Backstage</span>
+              <span class="tag">Python</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="metric">
+                <span class="metric__num">70%</span>
+                <span class="metric__label">Alert noise reduction</span>
+              </div>
+              <div class="metric">
+                <span class="metric__num">3×</span>
+                <span class="metric__label">Faster acknowledgement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card filterable" data-category="observability" data-animate data-animate-delay="1">
+            <div class="project-card__header">
+              <span class="project-card__category">Observability</span>
+            </div>
+            <h3>K8s Observability Platform</h3>
+            <p>Full-stack observability on Kubernetes with Prometheus, Grafana, Jaeger, and OpenTelemetry. MTTR reduced by 40%.</p>
+            <div class="project-card__tags">
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Jaeger</span>
+              <span class="tag">OTel</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="metric">
+                <span class="metric__num">40%</span>
+                <span class="metric__label">MTTR reduction</span>
+              </div>
+              <div class="metric">
+                <span class="metric__num">12</span>
+                <span class="metric__label">Services</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card filterable" data-category="education" data-animate data-animate-delay="2">
+            <div class="project-card__header">
+              <span class="project-card__category">Education</span>
+            </div>
+            <h3>DevOps Bootcamp Curriculum</h3>
+            <p>Designed and delivered a 12-week intensive DevOps bootcamp covering CI/CD, IaC, observability, and containers — for 500+ students across 3 cohorts.</p>
+            <div class="project-card__tags">
+              <span class="tag">CI/CD</span>
+              <span class="tag">Terraform</span>
+              <span class="tag">Docker</span>
+              <span class="tag">K8s</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="metric">
+                <span class="metric__num">500+</span>
+                <span class="metric__label">Students</span>
+              </div>
+              <div class="metric">
+                <span class="metric__num">92%</span>
+                <span class="metric__label">Satisfaction rate</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-strip" aria-labelledby="projects-cta-title">
+      <div class="container">
+        <span class="section-label" style="color: rgba(255,106,0,0.8);">Start a project</span>
+        <h2 id="projects-cta-title" data-animate>
+          Have something <em>interesting in mind?</em>
+        </h2>
+        <p data-animate data-animate-delay="1">I'm open to new contracts, consulting engagements, and full-time opportunities.</p>
+        <div class="cta-strip__actions" data-animate data-animate-delay="2">
+          <a href="mailto:bonanni.pro@gmail.com" class="btn btn-primary">Get in touch</a>
+          <a href="contact.html" class="btn btn-white-outline">Contact form</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo" aria-label="Lucas Bonanni — Home">
+          <svg width="28" height="28" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="17" stroke="#FF6A00" stroke-width="2"/><circle cx="18" cy="18" r="8" fill="none" stroke="#FF6A00" stroke-width="2"/><rect x="16" y="1" width="4" height="6" rx="1" fill="#FF6A00"/><rect x="16" y="29" width="4" height="6" rx="1" fill="#FF6A00" transform="rotate(180 18 32)"/><rect x="1" y="16" width="6" height="4" rx="1" fill="#FF6A00"/><rect x="29" y="16" width="6" height="4" rx="1" fill="#FF6A00"/><path d="M13 18 C13 15 15 13 18 13 C21 13 22 15 23 18 C24 21 26 23 23 23 C20 23 18 21 18 18 C18 15 16 13 13 13" stroke="#FF6A00" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+          <span class="footer__logo-text">Lucas <span>Bonanni</span></span>
+        </a>
+        <p>Software engineer and DevOps educator helping teams build reliable, automated platforms.</p>
+        <div class="footer__social" style="margin-top:1rem;">
+          <a href="https://www.linkedin.com/in/lucasbonanni" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://github.com/lucasbonanni" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="team.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <ul><li><a href="mailto:bonanni.pro@gmail.com">bonanni.pro@gmail.com</a></li><li><a href="https://www.linkedin.com/in/lucasbonanni" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://github.com/lucasbonanni" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Lucas Bonanni. All rights reserved.</p>
+      <p>Built with pure HTML, CSS &amp; vanilla JS.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
