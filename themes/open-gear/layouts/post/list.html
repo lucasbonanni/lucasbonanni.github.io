@@ -1,0 +1,97 @@
+{{ define "main" }}
+
+{{- /* ------------------------------------------------------------------- */}}
+{{- /* Collect all categories from posts with their counts                  */}}
+{{- /* ------------------------------------------------------------------- */}}
+{{- $pages := .Pages }}
+{{- $categories := slice }}
+{{- range $pages }}
+  {{- $cat := .Params.category }}
+  {{- if $cat }}
+    {{- $categories = $categories | append $cat }}
+  {{- end }}
+{{- end }}
+{{- $categories = $categories | uniq | sort }}
+
+<!-- HERO STRIP -->
+<section class="hero-strip" aria-label="Page header">
+  <div class="hero-strip__inner">
+    <span class="hero-strip__eyebrow">Writing</span>
+    <h1>Blog</h1>
+    <p>Technical thinking, written out — so the ideas are reusable.<br>
+    Articles on DevOps, CI/CD, observability, IaC, containers, and Python.</p>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="section" aria-labelledby="blog-heading">
+  <div class="container">
+    <h2 class="visually-hidden" id="blog-heading">All articles</h2>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar" role="group" aria-label="Filter articles by category" data-filter-target="articles-grid">
+      <button class="filter-btn active" data-filter="all">
+        All <span class="filter-count">{{ len $pages }}</span>
+      </button>
+      {{- range $cat := $categories }}
+        {{- $count := len (where $pages "Params.category" $cat) }}
+        {{- $slug := $cat | lower | replaceRE `[^a-z0-9]+` "-" | strings.TrimRight "-" }}
+        <button class="filter-btn" data-filter="{{ $slug }}">
+          {{ $cat }} <span class="filter-count">{{ $count }}</span>
+        </button>
+      {{- end }}
+    </div>
+
+    <!-- ARTICLES GRID -->
+    <div class="grid-3" id="articles-grid">
+      {{- range $i, $p := $pages }}
+        {{- $cat := $p.Params.category | default "" }}
+        {{- $catSlug := $cat | lower | replaceRE `[^a-z0-9]+` "-" | strings.TrimRight "-" }}
+        {{- $delay := mod $i 3 }}
+        <article class="card article-card filterable"
+                 {{ if $cat }}data-category="{{ $catSlug }}"{{ end }}
+                 data-animate{{ if gt $delay 0 }} data-animate-delay="{{ $delay }}"{{ end }}>
+          <div class="article-card__meta">
+            {{- if $cat }}<span class="article-card__category">{{ $cat }}</span>{{- end }}
+            <span class="article-card__date">{{ $p.Date.Format "Jan 2006" }}</span>
+            {{- with $p.Params.readTime }}<span class="article-card__read-time">{{ . }}</span>{{- end }}
+          </div>
+          <h3>{{ $p.Title }}</h3>
+          <p>{{ $p.Params.description | default $p.Summary | plainify | truncate 160 }}</p>
+          <div class="article-card__footer">
+            <div class="article-card__author">
+              <div class="avatar-initials" aria-hidden="true">LB</div>
+              Lucas Bonanni
+            </div>
+            <a href="{{ $p.RelPermalink }}" class="article-card__read-more" aria-label="Read {{ $p.Title }}">
+              Read {{ partial "icon.html" "arrow-right" }}
+            </a>
+          </div>
+        </article>
+      {{- end }}
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+{{- $author := index (.Site.Taxonomies.authors.ByCount) 0 }}
+<section class="cta-strip" aria-labelledby="blog-cta-title">
+  <div class="container">
+    <span class="section-label" style="color: rgba(255,106,0,0.8);">Stay connected</span>
+    <h2 id="blog-cta-title" data-animate>Want articles in your <em>inbox?</em></h2>
+    <p data-animate data-animate-delay="1">Reach out on LinkedIn or by email — I publish roughly one article a month.</p>
+    <div class="cta-strip__actions" data-animate data-animate-delay="2">
+      {{- with $author }}
+        {{- with .Page.Params.socials.linkedin }}
+          <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow on LinkedIn</a>
+        {{- end }}
+        {{- with .Page.Params.email }}
+          <a href="mailto:{{ . }}" class="btn btn-white-outline">Send an email</a>
+        {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

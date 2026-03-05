@@ -116,12 +116,12 @@ commit: feat(home): add homepage layout with parallax hero
 ### Phase 4 — Blog
 > Depends on Phase 2. Can run in parallel with Phase 5.
 
-- [ ] `themes/open-gear/layouts/post/list.html` — hero strip, filter bar (`data-filter-target`), article grid (3 cols)
-- [ ] `themes/open-gear/layouts/post/single.html` — article header, body, related posts partial, social share inline buttons, code blocks
-- [ ] `themes/open-gear/layouts/partials/related.html` — Hugo `.Site.RegularPages.Related` section
-- [ ] Create 3 fresh sample post page-bundles under `content/post/` (no migration from `archives/`)
-- [ ] Set `markup.highlight.style = "dracula"` in `config/_default/hugo.toml`
-- [ ] `hugo server -D` builds without errors
+- [x] `themes/open-gear/layouts/post/list.html` — hero strip, filter bar (`data-filter-target`), article grid (3 cols)
+- [x] `themes/open-gear/layouts/post/single.html` — article header, body, related posts partial, social share inline buttons, code blocks
+- [x] `themes/open-gear/layouts/partials/related.html` — Hugo `.Site.RegularPages.Related` section
+- [x] Create 3 fresh sample post page-bundles under `content/post/` (no migration from `archives/`)
+- [x] Set `markup.highlight.style = "dracula"` in `config/_default/hugo.toml`
+- [x] `hugo server -D` builds without errors
 
 ```
 commit: feat(blog): add blog list and single post layouts
