@@ -162,9 +162,9 @@ commit: feat(team): add team page and bio layout with timeline
 ### Phase 7 — Contact Page
 > Depends on Phase 2.
 
-- [ ] `themes/open-gear/layouts/contact/single.html` — info cards (location, `mailto:` email, socials), CTA section
-- [ ] `content/contact/_index.md` — contact copy
-- [ ] `hugo server -D` builds without errors
+- [x] `themes/open-gear/layouts/contact/list.html` — info cards (email, LinkedIn, GitHub), form with client-side validation + success overlay, direct-email CTA
+- [x] `content/contact/_index.md` — contact copy
+- [x] `hugo server -D` builds without errors
 
 ```
 commit: feat(contact): add contact page with mailto link

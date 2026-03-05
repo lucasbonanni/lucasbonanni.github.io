@@ -1,0 +1,161 @@
+{{ define "main" }}
+
+  {{ $author := (index .Site.Taxonomies.authors.ByCount 0).Page }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* HERO STRIP                                                          */}}
+  {{/* ------------------------------------------------------------------ */}}
+  <section class="hero-strip" aria-label="Page header">
+    <div class="hero-strip__inner">
+      <span class="hero-strip__eyebrow">{{ .Params.eyebrow | default "Let's talk" }}</span>
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Description }}</p>
+    </div>
+  </section>
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* CONTACT LAYOUT                                                      */}}
+  {{/* ------------------------------------------------------------------ */}}
+  <section class="section" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="contact-layout">
+
+        {{/* INFO PANEL */}}
+        <div class="contact-info" data-animate>
+          <h2 id="contact-heading" style="font-size:1.5rem;margin-bottom:1rem;">{{ .Params.infoHeading }}</h2>
+          <p style="color:var(--text-muted);margin-bottom:2rem;">{{ .Params.infoBody }}</p>
+
+          {{ with $author }}
+
+          {{/* Email */}}
+          {{ with .Params.email }}
+          <div class="contact-info__item">
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div>
+              <p class="contact-info__label">Email</p>
+              <a href="mailto:{{ . }}" class="contact-info__value">{{ . }}</a>
+            </div>
+          </div>
+          {{ end }}
+
+          {{/* LinkedIn */}}
+          {{ with .Params.socials.linkedin }}
+          <div class="contact-info__item">
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div>
+              <p class="contact-info__label">LinkedIn</p>
+              <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer" class="contact-info__value">linkedin.com/in/{{ . }}</a>
+            </div>
+          </div>
+          {{ end }}
+
+          {{/* GitHub */}}
+          {{ with .Params.socials.github }}
+          <div class="contact-info__item">
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </div>
+            <div>
+              <p class="contact-info__label">GitHub</p>
+              <a href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer" class="contact-info__value">github.com/{{ . }}</a>
+            </div>
+          </div>
+          {{ end }}
+
+          {{ end }}{{/* end with $author */}}
+
+          <div class="contact-info__promise" role="note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Response within one business day.</span>
+          </div>
+
+          {{ with .Params.topics }}
+          <div style="margin-top:2rem;">
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Common topics</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+              {{ range . }}<span class="pill">{{ . }}</span>{{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+
+        {{/* FORM PANEL */}}
+        <div class="form-wrap" data-animate data-animate-delay="1">
+          <form id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-row">
+              <div class="field">
+                <label for="contact-name">Full name <span aria-hidden="true">*</span></label>
+                <input type="text" id="contact-name" name="name" autocomplete="name" placeholder="Lucas Bonanni" required aria-required="true" />
+                <span class="field__error" role="alert" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="contact-email">Email address <span aria-hidden="true">*</span></label>
+                <input type="email" id="contact-email" name="email" autocomplete="email" placeholder="you@example.com" required aria-required="true" />
+                <span class="field__error" role="alert" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="contact-subject">Subject</label>
+              <select id="contact-subject" name="subject" aria-label="Message subject">
+                <option value="">Choose a topic…</option>
+                <option value="consulting">Consulting engagement</option>
+                <option value="fulltime">Full-time / fractional role</option>
+                <option value="training">Team training / bootcamp</option>
+                <option value="speaking">Speaking / podcast</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="contact-message">Message <span aria-hidden="true">*</span></label>
+              <textarea id="contact-message" name="message" rows="6" placeholder="Describe the problem you're working on — the more context, the better my initial response." required aria-required="true"></textarea>
+              <span class="field__error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send message
+            </button>
+          </form>
+
+          {{/* SUCCESS OVERLAY */}}
+          <div class="success-overlay" role="status" aria-live="polite" aria-atomic="true">
+            <div class="success-overlay__inner">
+              <div class="success-overlay__icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>Message sent!</h3>
+              <p>Thanks for reaching out. I'll get back to you within one business day.</p>
+              <button type="button" class="btn btn-outline" onclick="window.resetForm()" style="margin-top:1.5rem;">
+                Send another message
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* DIRECT EMAIL CTA                                                    */}}
+  {{/* ------------------------------------------------------------------ */}}
+  <section class="section section--subtle" aria-labelledby="alt-cta-heading">
+    <div class="container">
+      <div style="max-width:660px;margin-inline:auto;text-align:center;" data-animate>
+        <span class="section-label">Prefer async?</span>
+        <h2 id="alt-cta-heading" style="font-size:1.5rem;margin-bottom:1rem;">Or just email me directly</h2>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem;">Forms aren't for everyone. A short email with context on your situation works just as well.</p>
+        {{ with $author }}{{ with .Params.email }}
+        <a href="mailto:{{ . }}" class="btn btn-primary">{{ . }}</a>
+        {{ end }}{{ end }}
+      </div>
+    </div>
+  </section>
+
+{{ end }}
