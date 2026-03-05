@@ -1,0 +1,11 @@
+{{- /* GA4 Analytics — only renders when params.googleAnalytics is set
+       and we are in a production environment */ -}}
+{{- if and .Site.Params.googleAnalytics (eq hugo.Environment "production") }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ .Site.Params.googleAnalytics }}');
+</script>
+{{- end }}

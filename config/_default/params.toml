@@ -1,45 +1,25 @@
 # =============================================================
 # Lucas Bonanni — Site Parameters
 # Edit these values to customise the site.
+# Author data lives in content/authors/<slug>/_index.md
 # =============================================================
 
 # -------------------------------------------------
 # Brand colours
-# Both values are injected as CSS custom properties
-# via layouts/partials/brand-vars.html
+# Injected as CSS custom properties via partials/brand-vars.html
+# primaryColorRgb must match primaryColor in "R, G, B" format
+# (used for rgba() alpha variants in CSS)
 # -------------------------------------------------
-primaryColor = "#FF6A00"
-accentColor  = "#004F6E"
+primaryColor    = "#FF6A00"
+primaryColorRgb = "255, 106, 0"
+accentColor     = "#004F6E"
 
 # -------------------------------------------------
-# Hero
+# Hero (homepage)
 # -------------------------------------------------
-heroImage = "images/hero-bg.jpg"
+heroImage    = "images/hero-bg.jpg"
 heroHeadline = "Pragmatic DevOps engineering."
 heroTagline  = "Clear technical thinking at the service of concrete solutions."
-
-# -------------------------------------------------
-# Author identity
-# -------------------------------------------------
-authorName     = "Lucas Bonanni"
-authorRole     = "Software Engineer & DevOps Educator"
-authorBio      = "Staff-level DevOps engineer and educator. Building reliable platforms and teaching teams to own them."
-authorEmail    = "bonanni.pro@gmail.com"
-authorLocation = "Argentina"
-authorInitials = "LB"
-
-# -------------------------------------------------
-# Resume
-# -------------------------------------------------
-resumeURL = "/uploads/resume.pdf"
-
-# -------------------------------------------------
-# Social links (set to "" to hide)
-# -------------------------------------------------
-[socials]
-  github   = "lucasbonanni"
-  linkedin = "lucasbonanni"
-  twitter  = ""
 
 # -------------------------------------------------
 # Analytics — set your GA4 Measurement ID (G-XXXXXXX)
@@ -51,11 +31,11 @@ googleAnalytics = ""
 # Feature flags
 # -------------------------------------------------
 [features]
-  darkMode   = true   # enable dark/light mode toggle
-  comments   = false  # wired up in a future phase
-  search     = false  # wired up in a future phase (Pagefind)
-  math       = false  # enable KaTeX globally (or per-page via front matter)
-  mermaid    = false  # enable Mermaid globally (or per-page via front matter)
+  darkMode = true   # enable dark/light mode toggle
+  comments = false  # wired up in a future phase
+  search   = false  # wired up in a future phase (Pagefind)
+  math     = false  # enable KaTeX globally (or per-page via front matter)
+  mermaid  = false  # enable Mermaid globally (or per-page via front matter)
 
 # Code syntax highlight theme (any Chroma theme name)
 syntaxTheme = "dracula"

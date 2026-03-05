@@ -1,1 +1,75 @@
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+
+    {{- /* Brand column */}}
+    <div class="footer__brand">
+      <a href="{{ "/" | relLangURL }}" class="footer__logo" aria-label="{{ .Site.Title }} — Home">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <circle cx="18" cy="18" r="17" stroke="var(--color-primary)" stroke-width="2"/>
+          <circle cx="18" cy="18" r="8" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="16" y="1" width="4" height="6" rx="1" fill="var(--color-primary)"/>
+          <rect x="16" y="29" width="4" height="6" rx="1" fill="var(--color-primary)" transform="rotate(180 18 32)"/>
+          <rect x="1" y="16" width="6" height="4" rx="1" fill="var(--color-primary)"/>
+          <rect x="29" y="16" width="6" height="4" rx="1" fill="var(--color-primary)"/>
+          <path d="M13 18 C13 15 15 13 18 13 C21 13 22 15 23 18 C24 21 26 23 23 23 C20 23 18 21 18 18 C18 15 16 13 13 13" stroke="var(--color-primary)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="footer__logo-text">{{ .Site.Title }}</span>
+      </a>
+      <p>{{ .Site.Params.heroTagline }}</p>
+
+      {{- /* Social icons — pull first author's socials if available */}}
+      {{- $author := index (.Site.Taxonomies.authors.ByCount) 0 }}
+      {{- with $author }}
+        {{- $authorPage := .Page }}
+        <div class="footer__social" style="margin-top:1rem;">
+          {{- with $authorPage.Params.socials.linkedin }}
+          <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          {{- end }}
+          {{- with $authorPage.Params.socials.github }}
+          <a href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          {{- end }}
+        </div>
+      {{- end }}
+    </div>
+
+    {{- /* Nav column */}}
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <ul>
+        {{- range .Site.Menus.footer }}
+        <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </div>
+
+    {{- /* Contact column — pull from first author */}}
+    {{- $author := index (.Site.Taxonomies.authors.ByCount) 0 }}
+    <div class="footer__col">
+      <h4>Get in touch</h4>
+      <ul>
+        {{- with $author }}
+          {{- $p := .Page }}
+          {{- with $p.Params.email }}
+          <li><a href="mailto:{{ . }}">{{ . }}</a></li>
+          {{- end }}
+          {{- with $p.Params.socials.linkedin }}
+          <li><a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          {{- end }}
+          {{- with $p.Params.socials.github }}
+          <li><a href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          {{- end }}
+        {{- end }}
+      </ul>
+    </div>
+
+  </div>
+  <div class="footer__bottom">
+    <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+    <p>Built with Hugo &amp; the open-gear theme.</p>
+  </div>
+</footer>
+

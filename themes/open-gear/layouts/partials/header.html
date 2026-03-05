@@ -1,2 +1,60 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    {{- /* Logo */}}
+    <a href="{{ "/" | relLangURL }}" class="nav__logo" aria-label="{{ .Site.Title }} — Home">
+      <svg class="nav__logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="18" r="17" stroke="var(--color-primary)" stroke-width="2"/>
+        <circle cx="18" cy="18" r="8" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+        <rect x="16" y="1" width="4" height="6" rx="1" fill="var(--color-primary)"/>
+        <rect x="16" y="29" width="4" height="6" rx="1" fill="var(--color-primary)" transform="rotate(180 18 32)"/>
+        <rect x="1" y="16" width="6" height="4" rx="1" fill="var(--color-primary)"/>
+        <rect x="29" y="16" width="6" height="4" rx="1" fill="var(--color-primary)"/>
+        <path d="M13 18 C13 15 15 13 18 13 C21 13 22 15 23 18 C24 21 26 23 23 23 C20 23 18 21 18 18 C18 15 16 13 13 13" stroke="var(--color-primary)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="nav__logo-text">{{ index (split .Site.Title " ") 0 }} <span>{{ index (split .Site.Title " ") 1 }}</span></span>
+    </a>
+
+    {{- /* Navigation links */}}
+    <ul class="nav__links" id="nav-links" role="list">
+      {{- range .Site.Menus.main }}
+      <li>
+        <a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ else if $.HasMenuCurrent "main" . }} class="active"{{ end }}>
+          {{- .Name }}
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+
+    {{- /* Actions */}}
+    <div class="nav__actions">
+      <button
+        class="btn-theme"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label="Switch to dark mode"
+        title="Toggle color mode"
+      >
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+      <a href="{{ "/contact/" | relLangURL }}" class="btn btn-primary" style="padding:0.55rem 1.15rem;font-size:0.88rem;">Hire me</a>
+    </div>
+
+    {{- /* Mobile hamburger */}}
+    <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+{{- /* JS (loaded before </body> via defer — placed here so it is part of every page bundle) */}}
+{{ partialCached "head/js.html" . }}
+

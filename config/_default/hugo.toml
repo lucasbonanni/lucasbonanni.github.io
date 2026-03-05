@@ -10,6 +10,7 @@ defaultContentLanguageInSubdir = false
 [taxonomies]
   tag      = 'tags'
   category = 'categories'
+  author   = 'authors'
 
 # -------------------------------------------------
 # Build
