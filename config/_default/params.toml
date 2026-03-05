@@ -42,7 +42,7 @@ syntaxTheme = "dracula"
 
 # -------------------------------------------------
 # Homepage — section visibility and item counts
-# Content for howIWork and services lives in data/homepage.toml
+# Content for howIWork and services lives in content/_index.md front matter
 # -------------------------------------------------
 [homepage]
   showHowIWork  = true   # "How I work" 4-step process section

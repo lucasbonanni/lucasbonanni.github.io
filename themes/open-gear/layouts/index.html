@@ -1,0 +1,224 @@
+{{ define "main" }}
+{{/* ── Resolve author for email/CTA ────────────────────────────────────── */}}
+{{ $author := dict }}
+{{ range .Site.Taxonomies.authors.ByCount }}
+  {{ if eq .Page.File.Dir "authors/lucas-bonanni/" }}{{ $author = .Page }}{{ end }}
+{{ end }}
+{{ $email := "" }}
+{{ with $author }}{{ $email = .Params.email }}{{ end }}
+
+{{/* ── Config shortcuts ─────────────────────────────────────────────────── */}}
+{{ $hp := .Site.Params.homepage }}
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<section class="hero-full" aria-label="Hero">
+  <div class="hero-full__bg" role="img" aria-label="Abstract technology background"></div>
+  <div class="hero-full__overlay" aria-hidden="true"></div>
+
+  <div class="hero-full__content">
+    <span class="hero-full__eyebrow" data-animate>{{ .Params.heroEyebrow }}</span>
+    <h1 class="hero-full__title" data-animate data-animate-delay="1">
+      {{ .Params.heroTitle | safeHTML }}
+    </h1>
+    <p class="hero-full__subtitle" data-animate data-animate-delay="2">
+      {{ .Params.heroSubtitle }}
+    </p>
+    <div class="hero-full__actions" data-animate data-animate-delay="3">
+      {{ with $email }}
+      <a href="mailto:{{ . }}" class="btn btn-primary">
+        {{ partial "icon.html" "mail" }}
+        {{ $.Params.heroPrimaryLabel | default "Get in touch" }}
+      </a>
+      {{ end }}
+      <a href="{{ .Params.heroSecondaryURL | default "/project/" | relURL }}" class="btn btn-white-outline">
+        {{ .Params.heroSecondaryLabel | default "View projects" }}
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-full__scroll" aria-hidden="true">
+    {{ partial "icon.html" "chevron-down" }}
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── HOW I WORK ─────────────────────────────────────────────────────────── -->
+{{ if $hp.showHowIWork }}
+{{ with .Params.howIWork }}
+<section class="section" id="how-i-work" aria-labelledby="how-i-work-title">
+  <div class="container">
+    <div class="section-header text-center" data-animate>
+      <span class="section-label">{{ .label }}</span>
+      <h2 id="how-i-work-title">{{ .heading }}</h2>
+      <p>{{ .subheading }}</p>
+    </div>
+
+    <div class="grid-4">
+      {{ range $i, $step := .steps }}
+      <div class="card step-card" data-animate data-animate-delay="{{ add $i 1 }}">
+        <div class="step-card__number" aria-hidden="true">{{ $step.number }}</div>
+        <div class="step-card__icon" aria-hidden="true">
+          {{ partial "icon.html" $step.icon }}
+        </div>
+        <h3>{{ $step.title }}</h3>
+        <p>{{ $step.description }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- ── SERVICES ───────────────────────────────────────────────────────────── -->
+{{ if $hp.showServices }}
+{{ with .Params.services }}
+<section class="section section--subtle" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-header text-center" data-animate>
+      <span class="section-label">{{ .label }}</span>
+      <h2 id="services-title">{{ .heading }}</h2>
+      <p>{{ .subheading }}</p>
+    </div>
+
+    <div class="grid-3" style="margin-top: 0;">
+      {{ range $i, $svc := .items }}
+      <div class="card service-card" data-animate data-animate-delay="{{ add (mod $i 3) 1 }}">
+        <div class="service-card__icon" aria-hidden="true">
+          {{ partial "icon.html" $svc.icon }}
+        </div>
+        <h3>{{ $svc.title }}</h3>
+        <p>{{ $svc.description }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- ── RECENT PROJECTS ────────────────────────────────────────────────────── -->
+{{ if $hp.showProjects }}
+{{ $projects := where .Site.RegularPages "Section" "project" | first ($hp.projectsCount | default 3) }}
+{{ if $projects }}
+<section class="section" id="projects-preview" aria-labelledby="projects-preview-title">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <span class="section-label">Selected work</span>
+      <h2 id="projects-preview-title">Recent projects</h2>
+      <p>A handful of engagements that illustrate how I think and deliver.</p>
+    </div>
+
+    <div class="grid-3">
+      {{ range $i, $p := $projects }}
+      <div class="card project-card" data-animate data-animate-delay="{{ add $i 1 }}">
+        <div class="project-card__header">
+          <span class="project-card__category">{{ $p.Params.category }}</span>
+        </div>
+        <h3>{{ $p.Title }}</h3>
+        <p>{{ $p.Params.description }}</p>
+        {{ with $p.Params.tags }}
+        <div class="project-card__tags">
+          {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+        {{ with $p.Params.metrics }}
+        <div class="project-card__metrics">
+          {{ range . }}
+          <div class="metric">
+            <span class="metric__num">{{ .number }}</span>
+            <span class="metric__label">{{ .label }}</span>
+          </div>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+
+    <div class="section-more" data-animate>
+      <a href="{{ "/project/" | relURL }}" class="link-arrow">
+        View all projects
+        {{ partial "icon.html" "arrow-right" }}
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- ── LATEST ARTICLES ────────────────────────────────────────────────────── -->
+{{ if $hp.showBlog }}
+{{ $posts := where .Site.RegularPages "Section" "post" | first ($hp.blogCount | default 3) }}
+{{ if $posts }}
+<section class="section section--subtle" id="articles-preview" aria-labelledby="articles-preview-title">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <span class="section-label">Writing</span>
+      <h2 id="articles-preview-title">Latest articles</h2>
+      <p>Technical thinking, written out — so the ideas are reusable.</p>
+    </div>
+
+    <div class="grid-3">
+      {{ range $i, $post := $posts }}
+      {{ $authorPage := index ($post.Sites.Default.Taxonomies.authors.ByCount) 0 }}
+      <div class="card article-card" data-animate data-animate-delay="{{ add $i 1 }}">
+        <div class="article-card__meta">
+          <span class="article-card__category">{{ $post.Params.category }}</span>
+          <span class="article-card__date">{{ $post.Date.Format "Jan 2006" }}</span>
+          {{ with $post.Params.readTime }}<span class="article-card__read-time">{{ . }}</span>{{ end }}
+        </div>
+        <h3>{{ $post.Title }}</h3>
+        <p>{{ $post.Params.description }}</p>
+        <div class="article-card__footer">
+          <div class="article-card__author">
+            {{ with $author }}
+            <div class="avatar-initials" aria-hidden="true">{{ .Params.initials }}</div>
+            {{ .Params.name }}
+            {{ end }}
+          </div>
+          <a href="{{ $post.RelPermalink }}" class="article-card__read-more" aria-label="Read {{ $post.Title }}">
+            Read
+            {{ partial "icon.html" "arrow-right" }}
+          </a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    <div class="section-more" data-animate>
+      <a href="{{ "/post/" | relURL }}" class="link-arrow">
+        Read all articles
+        {{ partial "icon.html" "arrow-right" }}
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- ── CTA STRIP ──────────────────────────────────────────────────────────── -->
+{{ with $email }}
+<section class="cta-strip" aria-labelledby="cta-title">
+  <div class="container">
+    <span class="section-label" style="color: rgba(var(--color-primary-rgb), 0.8);" data-animate>Let's work together</span>
+    <h2 id="cta-title" data-animate data-animate-delay="1">
+      {{ $.Params.ctaHeading | default "Have a platform problem<br><em>worth solving?</em>" | safeHTML }}
+    </h2>
+    <p data-animate data-animate-delay="2">
+      {{ $.Params.ctaSubtext }}
+    </p>
+    <div class="cta-strip__actions" data-animate data-animate-delay="3">
+      <a href="mailto:{{ . }}" class="btn btn-primary">
+        {{ partial "icon.html" "mail" }}
+        {{ . }}
+      </a>
+      <a href="{{ $.Params.ctaButtonURL | default "/contact/" | relURL }}" class="btn btn-white-outline">
+        {{ $.Params.ctaButtonLabel | default "Use the contact form" }}
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

@@ -93,19 +93,19 @@ commit: feat(theme): add base layout and shared partials
 ### Phase 3 — Homepage
 > Depends on Phase 2.
 
-- [ ] `themes/open-gear/layouts/partials/icon.html` — maps icon name string (e.g. `"search"`, `"shield"`) to inline SVG; used by homepage sections and any future template
-- [ ] `content/_index.md` — hero headline/tagline + `howIWork` array (4 steps) + `services` array (6 items) all in YAML front matter; plain text descriptions, icon names only
-- [ ] Delete `data/homepage.toml` — content moved to front matter
-- [ ] `themes/open-gear/layouts/index.html` — full homepage layout:
+- [x] `themes/open-gear/layouts/partials/icon.html` — maps icon name string (e.g. `"search"`, `"shield"`) to inline SVG; used by homepage sections and any future template
+- [x] `content/_index.md` — hero headline/tagline + `howIWork` array (4 steps) + `services` array (6 items) all in YAML front matter; plain text descriptions, icon names only
+- [x] Delete `data/homepage.toml` — content moved to front matter
+- [x] `themes/open-gear/layouts/index.html` — full homepage layout:
   - Parallax hero (`.hero-full__bg`) — headline/tagline from `content/_index.md` front matter
   - "How I work" section — `range .Params.howIWork`, icon via `partial "icon.html"`; hidden when `params.homepage.showHowIWork = false`
   - "Services" section — `range .Params.services`, icon via `partial "icon.html"`; hidden when `params.homepage.showServices = false`
   - "Recent projects" preview — `where .Site.RegularPages "Section" "project" | first .Site.Params.homepage.projectsCount`; hidden when `showProjects = false`
   - "Latest articles" preview — `where .Site.RegularPages "Section" "post" | first .Site.Params.homepage.blogCount`; hidden when `showBlog = false`
-- [ ] `params.toml` `[homepage]` block ✅ — visibility flags (`showHowIWork`, `showServices`, `showProjects`, `showBlog`) and counts (`projectsCount`, `blogCount`)
-- [ ] Create 3 sample projects under `content/project/` and 3 sample posts under `content/post/` so homepage previews render
+- [x] `params.toml` `[homepage]` block ✅ — visibility flags (`showHowIWork`, `showServices`, `showProjects`, `showBlog`) and counts (`projectsCount`, `blogCount`)
+- [x] Create 3 sample projects under `content/project/` and 3 sample posts under `content/post/` so homepage previews render
 - [ ] Verify parallax on desktop (CSS `background-attachment: fixed`) and mobile (JS `translateY`)
-- [ ] `hugo server -D` builds without errors
+- [x] `hugo server -D` builds without errors (68 pages, 0 errors)
 
 ```
 commit: feat(home): add homepage layout with parallax hero
