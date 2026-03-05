@@ -1,0 +1,40 @@
+:root {
+  /* PRIMARY: Basado en tu #FF6A00 (Naranja vibrante) */
+  --color-primary-50: 255, 243, 235;
+  --color-primary-100: 255, 224, 204;
+  --color-primary-200: 255, 186, 143;
+  --color-primary-300: 255, 147, 82;
+  --color-primary-400: 255, 117, 31;
+  --color-primary-500: 255, 106, 0;    /* <--- Tu #FF6A00 Exacto */
+  --color-primary-600: 230, 95, 0;
+  --color-primary-700: 179, 74, 0;
+  --color-primary-800: 128, 53, 0;
+  --color-primary-900: 77, 32, 0;
+
+  /* NEUTRAL: Basado en tu #222222 y escala de grises */
+  --color-neutral-0: 255, 255, 255;    /* Tu #FFFFFF */
+  --color-neutral-50: 242, 242, 242;   /* Tu #F2F2F2 */
+  --color-neutral-100: 229, 231, 235;
+  --color-neutral-200: 209, 213, 219;
+  --color-neutral-300: 156, 163, 175;
+  --color-neutral-400: 111, 111, 111;  /* Tu #6F6F6F */
+  --color-neutral-500: 107, 114, 128;
+  --color-neutral-600: 75, 75, 75;     /* Tu #4B4B4B */
+  --color-neutral-700: 55, 65, 81;
+  --color-neutral-800: 34, 34, 34;     /* Tu #222222 */
+  --color-neutral-900: 17, 24, 39;
+
+  /* ACCENT: Tu azul #004F6E */
+  /* Lo usaremos para el color secondary del tema */
+  --color-secondary-500: 0, 79, 110;   /* Tu #004F6E */
+}
+
+/* Ajustes para el Modo Oscuro */
+.dark {
+  --color-neutral-0: 34, 34, 34;      /* Fondo oscuro #222222 */
+  --color-neutral-50: 45, 45, 45;
+  --color-neutral-900: 255, 255, 255; /* Texto principal blanco */
+
+  /* En modo oscuro, el naranja puede ser un poco más claro para mejor contraste */
+  --color-primary-500: 255, 120, 30;
+}

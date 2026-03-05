@@ -1,0 +1,58 @@
+{{/*
+Override Blowfish homepage "recent articles" block.
+Renders curated sections below the hero:
+1) Projects
+2) Publications
+3) Recent posts
+*/}}
+
+{{ $maxItems := .Site.Params.homepage.showRecentItems | default 3 }}
+
+{{/* Projects */}}
+{{ $projects := where site.RegularPages "Section" "projects" }}
+{{ $projects = $projects.ByWeight }}
+{{ if gt (len $projects) 0 }}
+  <h2 class="mt-8 text-2xl font-extrabold mb-6">Projects</h2>
+  <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+    {{ range first $maxItems $projects }}
+      {{ partial "article-link/card.html" . }}
+    {{ end }}
+  </section>
+{{ end }}
+
+{{/* Publications */}}
+{{ $publications := where site.RegularPages "Section" "publications" }}
+{{ $publications = $publications.ByWeight }}
+{{ if gt (len $publications) 0 }}
+  <h2 class="mt-12 text-2xl font-extrabold mb-6">Publications</h2>
+  <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+    {{ range first $maxItems $publications }}
+      {{ partial "article-link/card.html" . }}
+    {{ end }}
+  </section>
+{{ end }}
+
+{{/* Recent posts (keep config toggle) */}}
+{{ if .Site.Params.homepage.showRecent | default false }}
+  {{ $sections := .Site.Params.mainSections | default (slice "posts") }}
+  {{ $recent := where .Site.RegularPages "Type" "in" $sections }}
+  {{ $recent = sort $recent "Date" "desc" }}
+
+  {{ if gt (len $recent) 0 }}
+    <h2 class="mt-12 text-2xl font-extrabold mb-6">Recent posts</h2>
+
+    {{ if and .Site.Params.homepage.cardView (not .Site.Params.homepage.cardViewScreenWidth) | default false }}
+      <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {{ range first $maxItems $recent }}
+          {{ partial "article-link/card.html" . }}
+        {{ end }}
+      </section>
+    {{ else }}
+      <section class="space-y-10 w-full">
+        {{ range first $maxItems $recent }}
+          {{ partial "article-link/simple.html" . }}
+        {{ end }}
+      </section>
+    {{ end }}
+  {{ end }}
+{{ end }}

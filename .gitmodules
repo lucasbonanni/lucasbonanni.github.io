@@ -1,0 +1,13 @@
+[submodule "migration-lab/themes/eureka"]
+	path = migration-lab/themes/eureka
+	url = https://github.com/wangchucheng/hugo-eureka.git
+[submodule "migration-lab/themes/papermod"]
+	path = migration-lab/themes/papermod
+	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "migration-lab/themes/blowfish"]
+	path = migration-lab/themes/blowfish
+	url = https://github.com/nunocoracao/blowfish.git
+	branch = main
+[submodule "themes/eureka"]
+	path = themes/eureka
+	url = https://github.com/wangchucheng/hugo-eureka.git
