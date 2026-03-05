@@ -34,13 +34,13 @@
 ### Phase 0 — Foundation
 > Blocks everything else. Sets up Hugo project and CI pipeline.
 
-- [ ] **Overwrite** root `hugo.toml` → `baseURL`, `title`, `theme = "open-gear"` (clean slate, no Blox remnants)
-- [ ] Create `config/_default/hugo.toml` — taxonomy, markup settings, section outputs, syntax highlight
-- [ ] Create `config/_default/params.toml` — brand colours (`primaryColor = "#FF6A00"`, `accentColor = "#004F6E"`), socials, GA4 ID, feature toggles
-- [ ] Create `config/_default/languages.toml` — `[en]` (default) + `[es]`
-- [ ] Create `config/_default/menus.en.toml` and `config/_default/menus.es.toml` — nav links
-- [ ] Create/update `.github/workflows/deploy.yaml` → `peaceiris/actions-hugo` → `hugo --gc --minify` → GH Pages
-- [ ] Verify `hugo server -D` builds without errors
+- [x] **Overwrite** root `hugo.toml` → `baseURL`, `title`, `theme = "open-gear"` (clean slate, no Blox remnants)
+- [x] Create `config/_default/hugo.toml` — taxonomy, markup settings, section outputs, syntax highlight
+- [x] Create `config/_default/params.toml` — brand colours (`primaryColor = "#FF6A00"`, `accentColor = "#004F6E"`), socials, GA4 ID, feature toggles
+- [x] Create `config/_default/languages.toml` — `[en]` (default) + `[es]`
+- [x] Create `config/_default/menus.en.toml` and `config/_default/menus.es.toml` — nav links
+- [x] Create/update `.github/workflows/deploy.yaml` → `peaceiris/actions-hugo` → `hugo --gc --minify` → GH Pages
+- [x] Verify `hugo server -D` builds without errors
 
 ```
 commit: feat: initialize hugo site scaffold with open-gear theme
