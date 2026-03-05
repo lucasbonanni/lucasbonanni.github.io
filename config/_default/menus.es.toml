@@ -1,0 +1,46 @@
+# Spanish navigation menus — activated in Phase 9
+
+[[main]]
+  name   = 'Inicio'
+  url    = '/es/'
+  weight = 10
+
+[[main]]
+  name   = 'Proyectos'
+  url    = '/es/project/'
+  weight = 20
+
+[[main]]
+  name   = 'Blog'
+  url    = '/es/post/'
+  weight = 30
+
+[[main]]
+  name   = 'Equipo'
+  url    = '/es/team/'
+  weight = 40
+
+[[main]]
+  name   = 'Contacto'
+  url    = '/es/contact/'
+  weight = 50
+
+[[footer]]
+  name   = 'Proyectos'
+  url    = '/es/project/'
+  weight = 10
+
+[[footer]]
+  name   = 'Blog'
+  url    = '/es/post/'
+  weight = 20
+
+[[footer]]
+  name   = 'Equipo'
+  url    = '/es/team/'
+  weight = 30
+
+[[footer]]
+  name   = 'Contacto'
+  url    = '/es/contact/'
+  weight = 40
