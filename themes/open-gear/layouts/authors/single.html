@@ -69,8 +69,14 @@
       <div class="grid-4" style="margin-top:0;">
         {{ range $i, $cert := . }}
         <div class="card cert-card" data-animate data-animate-delay="{{ add $i 1 }}">
-          <div class="cert-card__logo" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="cert-card__logo">
+            {{- with $cert.imageURL -}}
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ $cert.name }} certificate image">
+              <img src="{{ . }}" alt="{{ $cert.name }} certificate" class="cert-card__img" loading="lazy">
+            </a>
+            {{- else -}}
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            {{- end -}}
           </div>
           <div class="cert-card__body">
             <span class="cert-card__issuer">{{ $cert.issuer }}</span>

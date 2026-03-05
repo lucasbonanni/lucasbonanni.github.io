@@ -36,6 +36,7 @@
 | Homepage icons | Icon name string (e.g. `icon: "search"`) in front matter → resolved to SVG by `partials/icon.html` partial (name → inline SVG map) |
 | Projects content source | `content/project/` section — queried by `index.html` layout via `where .Site.RegularPages "Section" "project"` |
 | Blog content source | `content/post/` section — queried by `index.html` layout via `where .Site.RegularPages "Section" "post"` |
+| Certificate types | `badgeURL`: external link or `/uploads/*.pdf` → "View credential" button; `imageURL` (optional): path to cert image → clickable thumbnail replaces shield icon; both fields are optional and combinable |
 
 ---
 
@@ -155,6 +156,20 @@ commit: feat(projects): add project list and single layouts
 
 ```
 commit: feat(team): add team page and bio layout with timeline
+```
+
+---
+
+### Phase 6.1 — Certificate Type Enhancements
+> Extends Phase 6 bio cert cards with PDF and image support.
+
+- [x] Update comment block in `content/authors/lucas-bonanni/_index.md` to document all 3 cert types (link, PDF, image) with usage examples
+- [x] Replace placeholder AWS cert with real PDF: `CertificateOfCompletion_Learning Amazon Web Services AWS for Developers.pdf` → `badgeURL: "/uploads/CertificateOfCompletion_Learning%20Amazon%20Web%20Services%20AWS%20for%20Developers.pdf"`
+- [x] Add `.cert-card__img` CSS rule in `main.css` — fills the 48×48 logo slot with `object-fit: cover`
+- [x] In `authors/single.html` cert card: render `<a><img class="cert-card__img"></a>` thumbnail when `imageURL` is set; else fall back to shield SVG
+
+```
+commit: feat(bio): add cert type support for links, pdfs and images
 ```
 
 ---

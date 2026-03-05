@@ -2154,6 +2154,14 @@ html[data-theme="dark"] .footer {
   margin-bottom: 0.2rem;
 }
 
+.cert-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
 /* Contact info — item layout and value link */
 .contact-info__item {
   display: flex;

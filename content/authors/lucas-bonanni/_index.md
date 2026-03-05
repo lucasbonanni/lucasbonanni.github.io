@@ -26,13 +26,25 @@ socials:
 
 # -------------------------------------------------
 # Certifications
-# Each entry: name, issuer, year, badgeURL (optional)
+# Supported types (all optional, combinable):
+#
+#   type 1 — external link (MS Learn, Credly, etc.)
+#     badgeURL: "https://learn.microsoft.com/api/achievements/..."
+#
+#   type 2 — PDF in static/uploads/
+#     badgeURL: "/uploads/MyCert.pdf"
+#     (URL-encode spaces: "My Cert.pdf" → "My%20Cert.pdf")
+#
+#   type 3 — image thumbnail (JPG/PNG/SVG in static/uploads/ or external URL)
+#     imageURL: "/uploads/my-cert-image.png"
+#     Replaces the shield icon with a clickable thumbnail.
+#     Can be combined with badgeURL to show both thumbnail + button.
 # -------------------------------------------------
 certs:
-  - name:     "AWS Certified Solutions Architect – Associate"
-    issuer:   "Amazon Web Services"
+  - name:     "Learning Amazon Web Services (AWS) for Developers"
+    issuer:   "LinkedIn Learning"
     year:     2024
-    badgeURL: ""
+    badgeURL: "/uploads/CertificateOfCompletion_Learning%20Amazon%20Web%20Services%20AWS%20for%20Developers.pdf"
   - name:     "Certified Kubernetes Administrator (CKA)"
     issuer:   "Cloud Native Computing Foundation"
     year:     2023
