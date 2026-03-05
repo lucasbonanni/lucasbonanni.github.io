@@ -30,8 +30,10 @@
 | `params.toml` author fields | Removed — only site-level settings live in `params.toml` |
 | Homepage section visibility | Per-section boolean flags in `params.toml` `[homepage]` (`showHowIWork`, `showServices`, `showProjects`, `showBlog`) |
 | Homepage item counts | `params.toml` `[homepage]` `projectsCount` and `blogCount` — controls how many items show in each preview section |
-| "How I work" content | `data/homepage.toml` `[[howIWork.steps]]` array — each step has `number`, `title`, `description`, `icon` (inline SVG) |
-| "Services" content | `data/homepage.toml` `[[services.items]]` array — each service has `title`, `description`, `icon` (inline SVG) |
+| "How I work" content | YAML front matter in `content/_index.md` (and `content/es/_index.md` for ES) — array `howIWork` with fields `number`, `icon`, `title`, `description`; naturally multilingual, no extra data file |
+| "Services" content | YAML front matter in `content/_index.md` — array `services` with fields `icon`, `title`, `description`; same file per language |
+| `data/homepage.toml` | Deleted — approach replaced by front matter in `_index.md` |
+| Homepage icons | Icon name string (e.g. `icon: "search"`) in front matter → resolved to SVG by `partials/icon.html` partial (name → inline SVG map) |
 | Projects content source | `content/project/` section — queried by `index.html` layout via `where .Site.RegularPages "Section" "project"` |
 | Blog content source | `content/post/` section — queried by `index.html` layout via `where .Site.RegularPages "Section" "post"` |
 
@@ -91,14 +93,15 @@ commit: feat(theme): add base layout and shared partials
 ### Phase 3 — Homepage
 > Depends on Phase 2.
 
+- [ ] `themes/open-gear/layouts/partials/icon.html` — maps icon name string (e.g. `"search"`, `"shield"`) to inline SVG; used by homepage sections and any future template
+- [ ] `content/_index.md` — hero headline/tagline + `howIWork` array (4 steps) + `services` array (6 items) all in YAML front matter; plain text descriptions, icon names only
+- [ ] Delete `data/homepage.toml` — content moved to front matter
 - [ ] `themes/open-gear/layouts/index.html` — full homepage layout:
   - Parallax hero (`.hero-full__bg`) — headline/tagline from `content/_index.md` front matter
-  - "How I work" section — rendered from `data/homepage.toml` `[[howIWork.steps]]`; hidden when `params.homepage.showHowIWork = false`
-  - "Services" section — rendered from `data/homepage.toml` `[[services.items]]`; hidden when `params.homepage.showServices = false`
+  - "How I work" section — `range .Params.howIWork`, icon via `partial "icon.html"`; hidden when `params.homepage.showHowIWork = false`
+  - "Services" section — `range .Params.services`, icon via `partial "icon.html"`; hidden when `params.homepage.showServices = false`
   - "Recent projects" preview — `where .Site.RegularPages "Section" "project" | first .Site.Params.homepage.projectsCount`; hidden when `showProjects = false`
   - "Latest articles" preview — `where .Site.RegularPages "Section" "post" | first .Site.Params.homepage.blogCount`; hidden when `showBlog = false`
-- [ ] `content/_index.md` — hero headline and tagline in front matter (falls back to `params.toml` values)
-- [ ] `data/homepage.toml` ✅ — created with `[[howIWork.steps]]` (4 items) and `[[services.items]]` (6 items), each with `title`, `description`, `icon` (inline SVG)
 - [ ] `params.toml` `[homepage]` block ✅ — visibility flags (`showHowIWork`, `showServices`, `showProjects`, `showBlog`) and counts (`projectsCount`, `blogCount`)
 - [ ] Create 3 sample projects under `content/project/` and 3 sample posts under `content/post/` so homepage previews render
 - [ ] Verify parallax on desktop (CSS `background-attachment: fixed`) and mobile (JS `translateY`)
