@@ -1,6 +1,4 @@
-{{- /* Injects brand colour CSS custom properties from params.toml.
-       Overrides the defaults defined in main.css so changing params.toml
-       is all that is needed to rebrand the entire site. */ -}}
+{{- /* Injects brand colour CSS custom properties from params.toml. */ -}}
 <style>
   :root {
     --color-primary:     {{ .Site.Params.primaryColor }};

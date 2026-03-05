@@ -502,7 +502,7 @@ html[data-theme="dark"] .icon-moon {
 .hero-full__bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/anton-maksimov-5642-su-sXnp2OfhghE-unsplash.jpg');
+  background-image: var(--hero-bg-image);
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* parallax on desktop */
