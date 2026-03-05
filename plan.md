@@ -26,6 +26,8 @@
 | Root `hugo.toml` | Overwrite completely — no backup needed |
 | Existing content in `archives/` | Ignore — start fresh with sample placeholder content |
 | Syntax highlight | `dracula` (configurable via `params.toml`) |
+| Author data storage | `content/authors/<slug>/_index.md` — Hugo `authors` taxonomy; single source of truth for bio, certs, work history, socials, resume; auto-generates bio page at `/authors/<slug>/` |
+| `params.toml` author fields | Removed — only site-level settings live in `params.toml` |
 
 ---
 
@@ -51,11 +53,11 @@ commit: feat: initialize hugo site scaffold with open-gear theme
 ### Phase 1 — Design System Port
 > Ports the full CSS + JS design system from the HTML prototype. Can run in parallel with Phase 0.
 
-- [ ] Copy `example/assets/css/style.css` → `themes/open-gear/assets/css/style.css`; replace hardcoded `#FF6A00` / `#004F6E` with CSS custom properties (`--color-primary`, `--color-accent`) and inject them from a Hugo-generated `<style>` block driven by `params.toml`
-- [ ] Copy `example/assets/js/main.js` → `themes/open-gear/assets/js/main.js`
-- [ ] Move parallax hero image → `static/images/hero-bg.jpg`
-- [ ] Copy brand logo/icon assets → `themes/open-gear/assets/media/`
-- [ ] Add `themes/open-gear/layouts/partials/brand-vars.html` — outputs `<style>:root{--color-primary:{{ .Site.Params.primaryColor }};--color-accent:{{ .Site.Params.accentColor }}}</style>` injected in `<head>`
+- [x] Copy `example/assets/css/style.css` → `themes/open-gear/assets/css/main.css`; replace hardcoded `#FF6A00` / `#004F6E` with CSS custom properties (`--color-primary`, `--color-accent`) and inject them from a Hugo-generated `<style>` block driven by `params.toml`
+- [x] Copy `example/assets/js/main.js` → `themes/open-gear/assets/js/main.js`
+- [x] Move parallax hero image → `static/images/hero-bg.jpg`
+- [x] Copy brand logo/icon assets → `static/images/logo.png`
+- [x] Add `themes/open-gear/layouts/partials/brand-vars.html` — outputs `<style>:root{--color-primary:{{ .Site.Params.primaryColor }};--color-accent:{{ .Site.Params.accentColor }}}</style>` injected in `<head>`
 
 ```
 commit: feat(theme): port design system css and js from prototype
@@ -66,13 +68,13 @@ commit: feat(theme): port design system css and js from prototype
 ### Phase 2 — Base Layouts
 > Shared HTML shell that all pages inherit from. Depends on Phase 0 & 1.
 
-- [ ] `themes/open-gear/layouts/_default/baseof.html` — `<html>`, head block, nav, `{{ block "main" }}`, footer
-- [ ] `themes/open-gear/layouts/partials/head.html` — charset, viewport, title, meta description, OG, Twitter Card, Google Fonts, CSS pipe, JS pipe
-- [ ] `themes/open-gear/layouts/partials/nav.html` — gear logo SVG, nav links, dark-mode toggle, "Hire me" CTA, hamburger button
-- [ ] `themes/open-gear/layouts/partials/footer.html` — 3-column footer (brand + tagline, nav links, social icons)
-- [ ] `themes/open-gear/layouts/partials/analytics.html` — GA4 snippet, gated by `params.googleAnalytics`
-- [ ] Verify skip-link, ARIA `role="navigation"`, `role="main"` in place
-- [ ] `hugo server -D` builds without errors
+- [x] `themes/open-gear/layouts/_default/baseof.html` — `<html>`, head block, nav, `{{ block "main" }}`, footer
+- [x] `themes/open-gear/layouts/partials/head.html` — charset, viewport, title, meta description, OG, Twitter Card, Google Fonts, CSS pipe, JS pipe
+- [x] `themes/open-gear/layouts/partials/header.html` — gear logo SVG, nav links, dark-mode toggle, "Hire me" CTA, hamburger button (replaces stub header.html)
+- [x] `themes/open-gear/layouts/partials/footer.html` — 3-column footer (brand + tagline, nav links, social icons) — data sourced from author taxonomy
+- [x] `themes/open-gear/layouts/partials/analytics.html` — GA4 snippet, gated by `params.googleAnalytics`
+- [x] Verify skip-link, ARIA `role="navigation"`, `role="main"` in place
+- [x] `hugo server -D` builds without errors (22 pages, 0 errors)
 
 ```
 commit: feat(theme): add base layout and shared partials
