@@ -1,0 +1,77 @@
+{{- /*
+  head/jsonld.html — outputs page-type-appropriate JSON-LD structured data.
+
+  WebSite  → homepage
+  Person   → author taxonomy term page (bio)
+  Article  → individual post page
+*/}}
+
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ .Site.Title | jsonify }},
+  "url": {{ .Site.BaseURL | jsonify }},
+  "description": {{ .Site.Params.heroTagline | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ (index .Site.Taxonomies.authors.ByCount 0).Page.Params.name | jsonify }}
+  }
+}
+</script>
+
+{{- else if eq .Kind "term" -}}
+{{- /* Author bio page — taxonomy term page for authors */ -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ .Params.name | jsonify }},
+  "jobTitle": {{ .Params.role | jsonify }},
+  "email": {{ .Params.email | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "description": {{ .Params.bio | jsonify }}
+  {{- with .Params.socials -}}
+  ,"sameAs": [
+    {{ $links := slice }}
+    {{- with .linkedin }}{{ $links = $links | append (printf "https://www.linkedin.com/in/%s" .) }}{{ end }}
+    {{- with .github }}{{ $links = $links | append (printf "https://github.com/%s" .) }}{{ end }}
+    {{- with .twitter }}{{ $links = $links | append (printf "https://twitter.com/%s" .) }}{{ end }}
+    {{ range $i, $v := $links }}{{ if $i }},{{ end }}{{ $v | jsonify }}{{ end }}
+  ]
+  {{- end }}
+}
+</script>
+
+{{- else if and .IsPage (eq .Section "post") -}}
+{{- /* Blog post Article schema */ -}}
+{{- $author := index .Site.Taxonomies.authors.ByCount 0 -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ with .Description }}{{ . | jsonify }}{{ else }}{{ .Summary | plainify | truncate 160 | jsonify }}{{ end }},
+  "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+  "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ .Permalink | jsonify }}
+  },
+  "author": {
+    "@type": "Person",
+    "name": {{ $author.Page.Params.name | jsonify }},
+    "url": {{ $author.Page.Permalink | jsonify }}
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": {{ .Site.Title | jsonify }}
+  }
+  {{- with .Params.tags }},
+  "keywords": {{ . | jsonify }}
+  {{- end }}
+}
+</script>
+{{- end -}}

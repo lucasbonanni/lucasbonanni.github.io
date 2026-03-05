@@ -11,7 +11,7 @@
 <link rel="canonical" href="{{ .Permalink }}" />
 
 {{- /* Open Graph */}}
-<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:type" content="{{ if .IsHome }}website{{ else if and .IsPage (eq .Section "post") }}article{{ else if eq .Kind "term" }}profile{{ else }}website{{ end }}" />
 <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}" />
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary | plainify | truncate 160 }}{{ . }}{{ else }}{{ .Site.Params.heroTagline }}{{ end }}{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
@@ -25,8 +25,9 @@
 {{- with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}" />{{ else }}<meta name="twitter:image" content="{{ .Site.Params.heroImage | absURL }}" />{{ end }}
 
 {{- /* Favicon */}}
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23FF6A00'/%3E%3Ccircle cx='50' cy='50' r='28' fill='none' stroke='white' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='12' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/favicon.png" />
 
 {{- /* Google Fonts */}}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,6 +39,9 @@
 
 {{- /* Stylesheet (Hugo Pipes — minified + fingerprinted in production) */}}
 {{ partialCached "head/css.html" . }}
+
+{{- /* JSON-LD structured data */}}
+{{ partial "head/jsonld.html" . }}
 
 {{- /* Analytics (GA4) */}}
 {{ partial "analytics.html" . }}

@@ -175,11 +175,11 @@ commit: feat(contact): add contact page with mailto link
 ### Phase 8 — SEO & Analytics
 > Depends on Phases 3–7 being complete.
 
-- [ ] JSON-LD schema partial: `Person` on bio, `Article` on post single, `WebSite` on home — injected via `head.html` by `.Type` / `.Layout`
-- [ ] Canonical URL, full OG + Twitter Card meta per page type in `head.html`
-- [ ] Favicon: inline SVG gear icon + `static/favicon.png` fallback
-- [ ] `themes/open-gear/layouts/robots.txt` template
-- [ ] Wire GA4 snippet through `partials/analytics.html` + `params.toml` `googleAnalytics`
+- [x] JSON-LD schema partial: `Person` on bio, `Article` on post single, `WebSite` on home — injected via `head.html` by `.Type` / `.Layout`
+- [x] Canonical URL, full OG + Twitter Card meta per page type in `head.html`
+- [x] Favicon: inline SVG gear icon (`static/favicon.svg`) + `static/favicon.png` fallback — linked in `head.html`
+- [x] `themes/open-gear/layouts/robots.txt` template + `enableRobotsTXT = true` in config
+- [x] Wire GA4 snippet through `partials/analytics.html` + `params.toml` `googleAnalytics`
 - [ ] Validate OG tags via opengraph.dev after deploy
 
 ```

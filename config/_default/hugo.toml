@@ -3,6 +3,7 @@ title   = 'Lucas Bonanni'
 
 defaultContentLanguage        = 'en'
 defaultContentLanguageInSubdir = false
+enableRobotsTXT               = true
 
 # -------------------------------------------------
 # Taxonomies
