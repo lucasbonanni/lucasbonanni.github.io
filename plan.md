@@ -28,6 +28,12 @@
 | Syntax highlight | `dracula` (configurable via `params.toml`) |
 | Author data storage | `content/authors/<slug>/_index.md` — Hugo `authors` taxonomy; single source of truth for bio, certs, work history, socials, resume; auto-generates bio page at `/authors/<slug>/` |
 | `params.toml` author fields | Removed — only site-level settings live in `params.toml` |
+| Homepage section visibility | Per-section boolean flags in `params.toml` `[homepage]` (`showHowIWork`, `showServices`, `showProjects`, `showBlog`) |
+| Homepage item counts | `params.toml` `[homepage]` `projectsCount` and `blogCount` — controls how many items show in each preview section |
+| "How I work" content | `data/homepage.toml` `[[howIWork.steps]]` array — each step has `number`, `title`, `description`, `icon` (inline SVG) |
+| "Services" content | `data/homepage.toml` `[[services.items]]` array — each service has `title`, `description`, `icon` (inline SVG) |
+| Projects content source | `content/project/` section — queried by `index.html` layout via `where .Site.RegularPages "Section" "project"` |
+| Blog content source | `content/post/` section — queried by `index.html` layout via `where .Site.RegularPages "Section" "post"` |
 
 ---
 
@@ -85,8 +91,16 @@ commit: feat(theme): add base layout and shared partials
 ### Phase 3 — Homepage
 > Depends on Phase 2.
 
-- [ ] `themes/open-gear/layouts/index.html` — parallax hero `.hero-full__bg`, value-props strip, featured projects `(where .Params.featured)`, featured blog posts
-- [ ] `content/_index.md` — hero headline, tagline, bio intro in front matter params
+- [ ] `themes/open-gear/layouts/index.html` — full homepage layout:
+  - Parallax hero (`.hero-full__bg`) — headline/tagline from `content/_index.md` front matter
+  - "How I work" section — rendered from `data/homepage.toml` `[[howIWork.steps]]`; hidden when `params.homepage.showHowIWork = false`
+  - "Services" section — rendered from `data/homepage.toml` `[[services.items]]`; hidden when `params.homepage.showServices = false`
+  - "Recent projects" preview — `where .Site.RegularPages "Section" "project" | first .Site.Params.homepage.projectsCount`; hidden when `showProjects = false`
+  - "Latest articles" preview — `where .Site.RegularPages "Section" "post" | first .Site.Params.homepage.blogCount`; hidden when `showBlog = false`
+- [ ] `content/_index.md` — hero headline and tagline in front matter (falls back to `params.toml` values)
+- [ ] `data/homepage.toml` ✅ — created with `[[howIWork.steps]]` (4 items) and `[[services.items]]` (6 items), each with `title`, `description`, `icon` (inline SVG)
+- [ ] `params.toml` `[homepage]` block ✅ — visibility flags (`showHowIWork`, `showServices`, `showProjects`, `showBlog`) and counts (`projectsCount`, `blogCount`)
+- [ ] Create 3 sample projects under `content/project/` and 3 sample posts under `content/post/` so homepage previews render
 - [ ] Verify parallax on desktop (CSS `background-attachment: fixed`) and mobile (JS `translateY`)
 - [ ] `hugo server -D` builds without errors
 

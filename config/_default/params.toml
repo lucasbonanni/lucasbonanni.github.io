@@ -39,3 +39,15 @@ googleAnalytics = ""
 
 # Code syntax highlight theme (any Chroma theme name)
 syntaxTheme = "dracula"
+
+# -------------------------------------------------
+# Homepage — section visibility and item counts
+# Content for howIWork and services lives in data/homepage.toml
+# -------------------------------------------------
+[homepage]
+  showHowIWork  = true   # "How I work" 4-step process section
+  showServices  = true   # "What I can help with" services grid
+  showProjects  = true   # "Recent projects" preview (from content/project/)
+  showBlog      = true   # "Latest articles" preview (from content/post/)
+  projectsCount = 3      # number of projects to display on homepage
+  blogCount     = 3      # number of blog posts to display on homepage
