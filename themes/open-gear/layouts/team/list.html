@@ -1,0 +1,106 @@
+{{ define "main" }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* HERO STRIP                                                          */}}
+  {{/* ------------------------------------------------------------------ */}}
+  <section class="hero-strip" aria-label="Page header">
+    <div class="hero-strip__inner">
+      <span class="hero-strip__eyebrow">The people</span>
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Description }}</p>
+    </div>
+  </section>
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* MISSION BLOCK                                                       */}}
+  {{/* ------------------------------------------------------------------ */}}
+  {{ with .Params.mission }}
+  <section class="section section--subtle" aria-labelledby="mission-title">
+    <div class="container">
+      <div style="max-width:740px;margin-inline:auto;text-align:center;" data-animate>
+        <span class="section-label">Our approach</span>
+        <h2 id="mission-title" style="margin-bottom:1.5rem;">{{ .heading }}</h2>
+        {{ range .paragraphs }}
+          <p style="font-size:1.05rem;color:var(--text-muted);">{{ . }}</p>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* TEAM GRID — sourced from authors taxonomy                           */}}
+  {{/* ------------------------------------------------------------------ */}}
+  <section class="section" aria-labelledby="team-heading">
+    <div class="container">
+      <div class="section-header text-center" data-animate>
+        <span class="section-label">People</span>
+        <h2 id="team-heading">The team</h2>
+        <p>Currently a solo practice, with occasional collaboration with trusted peers.</p>
+      </div>
+
+      <div style="display:flex;justify-content:center;margin-top:3rem;">
+        {{ range .Site.Taxonomies.authors.ByCount }}
+          {{ with .Page }}
+          <div class="card team-card" data-animate style="max-width:360px;width:100%;">
+            <div class="avatar" role="img" aria-label="{{ .Params.name }} avatar">{{ .Params.initials }}</div>
+            <h3>{{ .Params.name }}</h3>
+            <p class="team-card__role">{{ .Params.role }}</p>
+            <p>{{ .Params.bio }}</p>
+            <a href="{{ .RelPermalink }}" class="btn btn-outline" style="width:100%;justify-content:center;">
+              View full bio
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* VALUES / PRINCIPLES                                                 */}}
+  {{/* ------------------------------------------------------------------ */}}
+  {{ with .Params.values }}
+  <section class="section section--subtle" aria-labelledby="values-heading">
+    <div class="container">
+      <div class="section-header text-center" data-animate>
+        <span class="section-label">Principles</span>
+        <h2 id="values-heading">What guides the work</h2>
+      </div>
+      <div class="grid-3" style="margin-top:0;">
+        {{ range $i, $v := . }}
+        <div class="card" data-animate data-animate-delay="{{ add $i 1 }}">
+          <div class="service-card__icon" aria-hidden="true" style="width:44px;height:44px;background:var(--color-primary-dim);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:var(--color-primary);">
+            {{ partial "icon.html" $v.icon }}
+          </div>
+          <h3 style="font-size:1.05rem;margin-bottom:0.5rem;">{{ $v.title }}</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0;">{{ $v.body }}</p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* CTA STRIP                                                           */}}
+  {{/* ------------------------------------------------------------------ */}}
+  {{ $authorEntry := index .Site.Taxonomies.authors.ByCount 0 }}
+  {{ with $authorEntry.Page }}
+  <section class="cta-strip" aria-labelledby="team-cta-title">
+    <div class="container">
+      <span class="section-label" style="color:rgba(255,106,0,0.8);">Work together</span>
+      <h2 id="team-cta-title" data-animate>Looking for a <em>trusted technical partner?</em></h2>
+      <p data-animate data-animate-delay="1">Contracts, consultations, full-time roles — let's find the right format for the problem you're solving.</p>
+      <div class="cta-strip__actions" data-animate data-animate-delay="2">
+        {{ with .Params.email }}
+        <a href="mailto:{{ . }}" class="btn btn-primary">Get in touch</a>
+        {{ end }}
+        <a href="/contact/" class="btn btn-white-outline">Contact form</a>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+{{ end }}

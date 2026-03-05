@@ -146,12 +146,12 @@ commit: feat(projects): add project list and single layouts
 ### Phase 6 — Team & Bio
 > Depends on Phase 2.
 
-- [ ] `themes/open-gear/layouts/team/list.html` — mission section + team card grid (avatar initials, name, role, bio link)
-- [ ] `themes/open-gear/layouts/authors/single.html` — bio hero (initials avatar), summary paragraph, resume PDF download button, certificates card grid, work timeline
-- [ ] `content/team/_index.md` — mission copy
-- [ ] `content/authors/lucas-bonanni/_index.md` — bio, certs array, work history array in YAML front matter
-- [ ] Add `static/uploads/resume.pdf` placeholder
-- [ ] `hugo server -D` builds without errors
+- [x] `themes/open-gear/layouts/team/list.html` — mission section + team card grid (avatar initials, name, role, bio link)
+- [x] `themes/open-gear/layouts/authors/single.html` — bio hero (initials avatar), summary paragraph, resume PDF download button, certificates card grid, work timeline
+- [x] `content/team/_index.md` — mission copy
+- [x] `content/authors/lucas-bonanni/_index.md` — bio, certs array, work history array in YAML front matter
+- [x] Add `static/uploads/resume.pdf` placeholder
+- [x] `hugo server -D` builds without errors
 
 ```
 commit: feat(team): add team page and bio layout with timeline

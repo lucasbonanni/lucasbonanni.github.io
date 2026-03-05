@@ -1,0 +1,139 @@
+{{ define "main" }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* BIO HERO                                                            */}}
+  {{/* ------------------------------------------------------------------ */}}
+  <section class="bio-hero" aria-label="Profile header">
+    <div class="container">
+      <a href="/team/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        Back to team
+      </a>
+      <div class="bio-hero__inner">
+        <div class="bio-hero__avatar" role="img" aria-label="{{ .Params.name }} avatar">{{ .Params.initials }}</div>
+        <div>
+          <span class="bio-hero__eyebrow">{{ .Params.role }}</span>
+          <h1>{{ .Params.name }}</h1>
+          <p class="bio-hero__role">{{ .Params.role }}</p>
+          <p class="bio-hero__tagline">Building reliable platforms. Teaching teams to own them.</p>
+          <div class="bio-hero__links">
+            {{ with .Params.socials.linkedin }}
+            <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="{{ $.Params.name }} on LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            {{ end }}
+            {{ with .Params.socials.github }}
+            <a href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="{{ $.Params.name }} on GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+            {{ end }}
+            {{ with .Params.resumeURL }}
+            <a href="{{ . }}" class="btn btn-primary" download aria-label="Download {{ $.Params.name }} resume PDF">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download resume
+            </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* SUMMARY — body content from _index.md                              */}}
+  {{/* ------------------------------------------------------------------ */}}
+  {{ if .Content }}
+  <section class="section" aria-labelledby="summary-heading">
+    <div class="container">
+      <div style="max-width:740px;" data-animate>
+        <span class="section-label">Summary</span>
+        <h2 id="summary-heading" style="font-size:1.6rem;margin-bottom:1.5rem;">About me</h2>
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* CERTIFICATIONS                                                      */}}
+  {{/* ------------------------------------------------------------------ */}}
+  {{ with .Params.certs }}
+  <section class="section section--subtle" aria-labelledby="certs-heading">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">Credentials</span>
+        <h2 id="certs-heading">Certifications</h2>
+      </div>
+      <div class="grid-4" style="margin-top:0;">
+        {{ range $i, $cert := . }}
+        <div class="card cert-card" data-animate data-animate-delay="{{ add $i 1 }}">
+          <div class="cert-card__logo" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="cert-card__body">
+            <span class="cert-card__issuer">{{ $cert.issuer }}</span>
+            <h4 class="cert-card__title">{{ $cert.name }}</h4>
+            <p class="cert-card__year">Issued {{ $cert.year }}</p>
+            {{ with $cert.badgeURL }}
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding:0.3rem 0.75rem;font-size:0.8rem;margin-top:0.5rem;" aria-label="View {{ $cert.name }} credential">
+              View credential
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* WORK HISTORY TIMELINE                                               */}}
+  {{/* ------------------------------------------------------------------ */}}
+  {{ with .Params.workHistory }}
+  <section class="section" aria-labelledby="experience-heading">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">Career</span>
+        <h2 id="experience-heading">Work experience</h2>
+      </div>
+      <ol class="timeline" reversed aria-label="Work experience timeline">
+        {{ range $i, $job := . }}
+        <li class="timeline__item" data-animate data-animate-delay="{{ add $i 1 }}">
+          <div class="timeline__dot" aria-hidden="true"></div>
+          <div>
+            <div class="timeline__header">
+              <h3 class="timeline__role">{{ $job.title }}</h3>
+              <span class="timeline__company">{{ $job.company }}</span>
+            </div>
+            <time class="timeline__period">{{ $job.period }}</time>
+            <p class="timeline__description">{{ $job.description }}</p>
+          </div>
+        </li>
+        {{ end }}
+      </ol>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* ------------------------------------------------------------------ */}}
+  {{/* CTA STRIP                                                           */}}
+  {{/* ------------------------------------------------------------------ */}}
+  <section class="cta-strip" aria-labelledby="bio-cta-title">
+    <div class="container">
+      <span class="section-label" style="color:rgba(255,106,0,0.8);">Open to work</span>
+      <h2 id="bio-cta-title" data-animate>Let's build something <em>worth running.</em></h2>
+      <p data-animate data-animate-delay="1">Staff/principal roles, consulting engagements, and instructing opportunities welcome.</p>
+      <div class="cta-strip__actions" data-animate data-animate-delay="2">
+        {{ with .Params.email }}
+        <a href="mailto:{{ . }}" class="btn btn-primary">Email me</a>
+        {{ end }}
+        <a href="/contact/" class="btn btn-white-outline">Contact form</a>
+      </div>
+    </div>
+  </section>
+
+{{ end }}

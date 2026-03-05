@@ -1,4 +1,6 @@
 ---
+layout: "single"
+
 # =============================================================
 # Lucas Bonanni — Author Profile
 # Single source of truth for all author data.
@@ -74,5 +76,8 @@ workHistory:
       travel booking systems serving millions of users.
 ---
 
-Software engineer and DevOps educator based in Argentina.
-Building reliable platforms and teaching teams to own them.
+I'm a software engineer and DevOps educator with over seven years of hands-on experience designing and operating production infrastructure at scale. My work spans Kubernetes clusters, Terraform-managed cloud foundations, CI/CD pipelines, and Python-based backend services — usually at SRE-adjacent scope, with a focus on observability and long-term maintainability.
+
+Alongside client work, I teach a DevOps bootcamp that has graduated several cohorts of engineers who now work at companies across Latin America and Europe. Teaching forces me to articulate the "why" behind every tool choice — a discipline that makes my engineering work more deliberate and my documentation more useful.
+
+I'm currently open to staff or principal engineering roles at companies that value platform thinking, psychological safety, and thoughtful documentation. I'm also available for consulting engagements where the problem is real and the team is curious.
