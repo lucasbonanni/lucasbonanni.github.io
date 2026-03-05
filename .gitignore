@@ -11,4 +11,9 @@ hugo.linux
 
 # Temporary lock file while building
 /.hugo_build.lock
+
+# Migration lab (Blowfish) generated files
+/migration-lab/public/
+/migration-lab/resources/_gen/
+/migration-lab/.hugo_build.lock
 .DS_Store
