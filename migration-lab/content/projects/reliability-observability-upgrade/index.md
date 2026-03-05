@@ -1,7 +1,7 @@
 ---
 title: "Reliability & Observability Upgrade"
 summary: "Template project page — replace with your real case study."
-draft: true
+draft: false
 weight: 10
 
 # Optional: link to repo/case study

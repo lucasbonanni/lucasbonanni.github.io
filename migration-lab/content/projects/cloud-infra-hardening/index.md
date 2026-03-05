@@ -1,7 +1,7 @@
 ---
 title: "Cloud Infrastructure Hardening"
 summary: "Template project page — replace with your real case study."
-draft: true
+draft: false
 weight: 30
 ---
 

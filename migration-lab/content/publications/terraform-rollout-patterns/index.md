@@ -1,7 +1,7 @@
 ---
 title: "Terraform Patterns for Safer Rollouts"
 summary: "Template publication entry — replace with your real post/talk/paper."
-draft: true
+draft: false
 weight: 30
 ---
 

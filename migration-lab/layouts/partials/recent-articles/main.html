@@ -1,12 +1,32 @@
 {{/*
 Override Blowfish homepage "recent articles" block.
 Renders curated sections below the hero:
-1) Projects
-2) Publications
-3) Recent posts
+1) Services
+2) Projects
+3) Publications
+4) Recent posts
 */}}
 
 {{ $maxItems := .Site.Params.homepage.showRecentItems | default 3 }}
+
+{{ $wrapFullWidth := and (.Site.Params.homepage.cardViewScreenWidth | default false) (.Site.Params.homepage.cardView | default true) }}
+
+{{ if $wrapFullWidth }}
+  <div class="relative w-screen max-w-[1600px] px-[30px] start-[calc(max(-50vw,-800px)+50%)]">
+{{ end }}
+
+{{/* Services */}}
+{{ $services := where site.RegularPages "Section" "services" }}
+{{ $services = where $services "Draft" false }}
+{{ $services = $services.ByWeight }}
+{{ if gt (len $services) 0 }}
+  <h2 class="mt-8 text-2xl font-extrabold mb-6">Services</h2>
+  <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+    {{ range first $maxItems $services }}
+      {{ partial "article-link/card.html" . }}
+    {{ end }}
+  </section>
+{{ end }}
 
 {{/* Projects */}}
 {{ $projects := where site.RegularPages "Section" "projects" }}
@@ -55,4 +75,8 @@ Renders curated sections below the hero:
       </section>
     {{ end }}
   {{ end }}
+{{ end }}
+
+{{ if $wrapFullWidth }}
+  </div>
 {{ end }}

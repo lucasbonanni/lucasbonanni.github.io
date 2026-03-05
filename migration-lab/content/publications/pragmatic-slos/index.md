@@ -1,7 +1,7 @@
 ---
 title: "Pragmatic SLOs for Product Teams"
 summary: "Template publication entry — replace with your real post/talk/paper."
-draft: true
+draft: false
 weight: 20
 ---
 
