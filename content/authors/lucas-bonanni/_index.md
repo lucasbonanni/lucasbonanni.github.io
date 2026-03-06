@@ -45,6 +45,11 @@ certs:
     issuer:   "LinkedIn Learning"
     year:     2024
     badgeURL: "/uploads/CertificateOfCompletion_Learning%20Amazon%20Web%20Services%20AWS%20for%20Developers.pdf"
+
+  - name:     "GitHub Copilot Across Environments: IDE, Chat, GitHub.com"
+    issuer:   "Microsoft Learning"
+    year:     2024
+    badgeURL: "https://learn.microsoft.com/es-mx/users/darkdanag-8836/achievements/37j7ceuh"
   - name:     "Certified Kubernetes Administrator (CKA)"
     issuer:   "Cloud Native Computing Foundation"
     year:     2023
