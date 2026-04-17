@@ -64,37 +64,58 @@ certs:
 # Each entry: title, company, period, description
 # -------------------------------------------------
 workHistory:
-  - title:       "Staff DevOps Engineer"
+  - title:       "Freelance software engineering & DevOps consulting"
     company:     "Freelance / Consulting"
     period:      "2023 – Present"
     description: >
-      Platform reliability, CI/CD automation, and infrastructure architecture
-      for startups and scale-ups across Argentina and remotely.
+      Driving end-to-end product development, from core backend architecture to automated cloud delivery, with total project ownership.
 
-  - title:       "DevOps Instructor"
-    company:     "Digital House / Coderhouse"
+  - title:       "Lead DevOps Instructor"
+    company:     "Palermo University"
+    period:      "2024 – Present"
+    description: >
+      As Lead Instructor at Palermo University, I design and deliver a comprehensive DevOps curriculum, mentoring the next generation of engineers in high-performance culture, IaC, and cloud-native orchestration.
+
+  - title:       "Software engineer"
+    company:     "PedidosYa (Delivery Hero)"
+    period:      "2023 – 2025"
+    description: >
+      Directed the end-to-end development of high-impact partner incentive systems while slashing downtime and incident detection times through advanced observability and load testing
+
+  - title:       "Software engineer"
+    company:     "Eventbrite"
     period:      "2021 – 2023"
     description: >
-      Developed and delivered DevOps bootcamp curriculum covering Docker,
-      Kubernetes, Terraform, and GitHub Actions to 200+ students.
+        Directed cross-functional integrations and core infrastructure upgrades, taking full ownership of production releases and high-performance backend transitions.
+        
+      summary: "Key Skills: Python (Django, Flask, FastAPI), Kotlin, AWS (EC2, RDS, ElastiCache, Lambda), Terraform, gRPC, Message Queues, Architecture Decision Records, API Design"
 
-  - title:       "Senior Infrastructure Engineer"
-    company:     "MercadoLibre"
-    period:      "2019 – 2021"
-    description: >
-      Designed and maintained AWS multi-account landing zones, IaC modules,
-      and observability stacks for high-traffic e-commerce workloads.
-
-  - title:       "Software Engineer"
-    company:     "Despegar"
-    period:      "2016 – 2019"
+  - title:       "Software engineer"
+    company:     "Thomson Reuters"
+    period:      "2015 – 2021"
     description: >
       Built Python microservices and automated deployment pipelines for
       travel booking systems serving millions of users.
 ---
 
-I'm a software engineer and DevOps educator with over seven years of hands-on experience designing and operating production infrastructure at scale. My work spans Kubernetes clusters, Terraform-managed cloud foundations, CI/CD pipelines, and Python-based backend services — usually at SRE-adjacent scope, with a focus on observability and long-term maintainability.
 
-Alongside client work, I teach a DevOps bootcamp that has graduated several cohorts of engineers who now work at companies across Latin America and Europe. Teaching forces me to articulate the "why" behind every tool choice — a discipline that makes my engineering work more deliberate and my documentation more useful.
+### Senior Software Engineer 
 
-I'm currently open to staff or principal engineering roles at companies that value platform thinking, psychological safety, and thoughtful documentation. I'm also available for consulting engagements where the problem is real and the team is curious.
+I am a Software Engineer and Lead Instructor at Palermo University with over a decade of 
+experience designing, scaling, and operating production systems. My career has evolved 
+from building complex microservices in C# and Python to architecting the cloud-native 
+foundations that support them.
+
+**What I bring to the table:**
+
+* **Hands-on Reliability:** I’ve spent the last 4 years at high-growth companies like 
+    Eventbrite and PedidosYa, focusing on Kubernetes orchestration, Terraform-managed 
+    infrastructure (IaC), and resilient Python-based backends.
+* **The "Instructor" Edge:** Teaching DevOps forces me to strip away the hype and 
+    articulate the underlying principles of every tool. This discipline makes my 
+    engineering work more deliberate and my documentation exceptionally clear.
+* **End-to-End Ownership:** Whether it’s Ansible for configuration management or 
+    optimizing CI/CD pipelines, I prioritize observability, long-term maintainability, 
+    and "Platform Thinking."
+
+I am currently open to **Software Engineering roles** or **Consulting engagements** where technical rigor meets a culture of curiosity and psychological safety.
