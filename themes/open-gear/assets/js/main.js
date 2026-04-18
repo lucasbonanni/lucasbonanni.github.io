@@ -101,6 +101,12 @@
     const heroBg = document.querySelector('.hero-full__bg');
     if (!heroBg) return;
 
+    // Skip parallax if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      heroBg.style.backgroundAttachment = 'scroll';
+      return;
+    }
+
     // Only engage JS parallax on pointer:coarse (touch) devices where
     // background-attachment:fixed is unreliable.
     const isTouch = window.matchMedia('(pointer: coarse)').matches;

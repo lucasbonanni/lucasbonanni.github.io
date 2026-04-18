@@ -563,6 +563,13 @@ html[data-theme="dark"] .icon-moon {
   }
 }
 
+/* Respect reduced motion preference for parallax */
+@media (prefers-reduced-motion: reduce) {
+  .hero-full__bg {
+    background-attachment: scroll !important;
+  }
+}
+
 .hero-full__overlay {
   position: absolute;
   inset: 0;
@@ -2316,6 +2323,16 @@ html[data-theme="dark"] .footer {
   .hero-full__actions { flex-direction: column; align-items: flex-start; }
 
   .featured-card__visual { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 402px) {
+  /* Aggressive mobile: hide logo text, compact actions */
+  .nav__logo-text { display: none; }
+  .nav__logo { gap: 0; }
+  .nav__logo-icon { width: 32px; height: 32px; }
+  .nav__actions { gap: 0.35rem; }
+  .lang-switcher { order: 2; }
+  .btn { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
 }
 
 @media (max-width: 480px) {
