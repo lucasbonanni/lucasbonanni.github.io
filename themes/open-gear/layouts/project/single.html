@@ -1,0 +1,93 @@
+{{ define "main" }}
+
+{{- $author := "" }}
+{{- range .Site.Taxonomies.authors.ByCount }}
+  {{- if eq .Page.File.Dir "authors/lucas-bonanni/" }}{{ $author = .Page }}{{ end }}
+{{- end }}
+
+<!-- PROJECT HERO STRIP -->
+<section class="hero-strip hero-strip--article" aria-label="Project header">
+  <div class="hero-strip__inner">
+    {{- with .Params.category }}
+    <span class="hero-strip__eyebrow">{{ . }}</span>
+    {{- end }}
+    <h1>{{ .Title }}</h1>
+    <div class="article-hero__meta">
+      <span class="article-card__date">{{ .Date.Format "Jan 2006" }}</span>
+      {{- with .Params.tags }}
+        {{- range . }}<span class="tag" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);">{{ . }}</span>{{ end }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT BODY -->
+<div class="section">
+  <div class="container container--narrow">
+
+    {{- with .Params.metrics }}
+    <!-- METRICS ROW -->
+    <div class="project-metrics-row" aria-label="Project outcomes">
+      {{- range . }}
+      <div class="metric metric--lg">
+        <span class="metric__num">{{ .number }}</span>
+        <span class="metric__label">{{ .label }}</span>
+      </div>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- with .Params.description }}
+    <p class="project-lead">{{ . }}</p>
+    {{- end }}
+
+    <article class="prose" aria-label="Project details">
+      {{ .Content }}
+    </article>
+
+    {{- with .Params.tags }}
+    <div class="article-tags" aria-label="Tags">
+      {{- range . }}<span class="tag">{{ . }}</span>{{ end }}
+    </div>
+    {{- end }}
+
+    <!-- BACK TO PROJECTS -->
+    <nav class="post-nav" aria-label="Project navigation">
+      {{- with .PrevInSection }}
+      <a href="{{ .RelPermalink }}" class="post-nav__link post-nav__link--prev">
+        <span class="post-nav__label">← Previous</span>
+        <span class="post-nav__title">{{ .Title }}</span>
+      </a>
+      {{- else }}<span></span>{{- end }}
+      {{- with .NextInSection }}
+      <a href="{{ .RelPermalink }}" class="post-nav__link post-nav__link--next">
+        <span class="post-nav__label">Next →</span>
+        <span class="post-nav__title">{{ .Title }}</span>
+      </a>
+      {{- end }}
+    </nav>
+
+  </div>
+</div>
+
+<!-- CTA STRIP -->
+{{- $a := index (.Site.Taxonomies.authors.ByCount) 0 }}
+<section class="cta-strip" aria-labelledby="project-cta-title">
+  <div class="container">
+    <span class="section-label" style="color: rgba(255,106,0,0.8);">Work together</span>
+    <h2 id="project-cta-title" data-animate>Interested in working <em>together?</em></h2>
+    <p data-animate data-animate-delay="1">Let's talk about your infrastructure, platform, or automation challenges.</p>
+    <div class="cta-strip__actions" data-animate data-animate-delay="2">
+      {{- with $a }}
+        {{- with .Page.Params.socials.linkedin }}
+        <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Connect on LinkedIn</a>
+        {{- end }}
+        {{- with .Page.Params.email }}
+        <a href="mailto:{{ . }}" class="btn btn-white-outline">Send an email</a>
+        {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

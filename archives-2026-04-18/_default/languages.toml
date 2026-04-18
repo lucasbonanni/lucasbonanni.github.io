@@ -1,0 +1,16 @@
+# =============================================================
+# Language Configuration
+# Bilingual setup with language subdirectories enabled.
+# =============================================================
+
+[en]
+  languageCode = 'en'
+  languageName = 'English'
+  weight       = 1
+  contentDir   = 'content/en'
+
+[es]
+  languageCode = 'es'
+  languageName = 'Español'
+  weight       = 2
+  contentDir   = 'content/es'

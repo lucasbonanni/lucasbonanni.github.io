@@ -1,0 +1,36 @@
+{{- $related := .Site.RegularPages.Related . | first 3 }}
+{{- if $related }}
+<section class="section section--subtle" aria-labelledby="related-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Read more</span>
+      <h2 id="related-heading">Related articles</h2>
+    </div>
+    <div class="grid-3">
+      {{- range $i, $p := $related }}
+        {{- $cat := $p.Params.category | default "" }}
+        {{- $catSlug := $cat | lower | replaceRE `[^a-z0-9]+` "-" | strings.TrimRight "-" }}
+        {{- $delay := $i }}
+        <article class="card article-card" data-animate{{ if gt $delay 0 }} data-animate-delay="{{ $delay }}"{{ end }}>
+          <div class="article-card__meta">
+            {{- if $cat }}<span class="article-card__category">{{ $cat }}</span>{{- end }}
+            <span class="article-card__date">{{ $p.Date.Format "Jan 2006" }}</span>
+            {{- with $p.Params.readTime }}<span class="article-card__read-time">{{ . }}</span>{{- end }}
+          </div>
+          <h3>{{ $p.Title }}</h3>
+          <p>{{ $p.Params.description | default $p.Summary | plainify | truncate 120 }}</p>
+          <div class="article-card__footer">
+            <div class="article-card__author">
+              <div class="avatar-initials" aria-hidden="true">LB</div>
+              Lucas Bonanni
+            </div>
+            <a href="{{ $p.RelPermalink }}" class="article-card__read-more" aria-label="Read {{ $p.Title }}">
+              Read {{ partial "icon.html" "arrow-right" }}
+            </a>
+          </div>
+        </article>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}

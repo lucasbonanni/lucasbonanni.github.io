@@ -1,0 +1,47 @@
+# English navigation menus
+
+[[main]]
+  name       = 'Home'
+  url        = '/'
+  weight     = 10
+
+[[main]]
+  name       = 'Projects'
+  url        = '/project/'
+  weight     = 20
+
+[[main]]
+  name       = 'Blog'
+  url        = '/post/'
+  weight     = 30
+
+[[main]]
+  name       = 'About'
+  url        = '/team/'
+  weight     = 40
+
+[[main]]
+  name       = 'Contact'
+  url        = '/contact/'
+  weight     = 50
+
+# Footer quick links (reuses main items)
+[[footer]]
+  name   = 'Projects'
+  url    = '/project/'
+  weight = 10
+
+[[footer]]
+  name   = 'Blog'
+  url    = '/post/'
+  weight = 20
+
+[[footer]]
+  name   = 'About'
+  url    = '/team/'
+  weight = 30
+
+[[footer]]
+  name   = 'Contact'
+  url    = '/contact/'
+  weight = 40

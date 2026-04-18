@@ -1,0 +1,8 @@
+{{- /* Injects brand colour CSS custom properties from params.toml. */ -}}
+<style>
+  :root {
+    --color-primary:     {{ .Site.Params.primaryColor }};
+    --color-primary-rgb: {{ .Site.Params.primaryColorRgb }};
+    --color-accent:      {{ .Site.Params.accentColor }};
+  }
+</style>

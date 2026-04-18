@@ -1,0 +1,83 @@
+- id: skip_to_main
+  translation: "Saltar al contenido principal"
+
+- id: nav_main_aria
+  translation: "Navegacion principal"
+
+- id: home_aria
+  translation: "Inicio"
+
+- id: theme_dark
+  translation: "Cambiar a modo oscuro"
+
+- id: theme_light
+  translation: "Cambiar a modo claro"
+
+- id: theme_toggle_title
+  translation: "Alternar modo de color"
+
+- id: open_nav_menu
+  translation: "Abrir menu de navegacion"
+
+- id: language_switcher_aria
+  translation: "Selector de idioma"
+
+- id: hire_me
+  translation: "Contratame"
+
+- id: footer_navigation
+  translation: "Navegacion"
+
+- id: footer_get_in_touch
+  translation: "Contacto"
+
+- id: footer_link_linkedin
+  translation: "LinkedIn"
+
+- id: footer_link_github
+  translation: "GitHub"
+
+- id: footer_rights
+  translation: "© {{ .year }} {{ .site }}. Todos los derechos reservados."
+
+- id: footer_built_with
+  translation: "Construido con Hugo y el tema open-gear."
+
+- id: home_hero_aria
+  translation: "Hero"
+
+- id: home_hero_bg_aria
+  translation: "Fondo abstracto de tecnologia"
+
+- id: home_scroll
+  translation: "Desplazar"
+
+- id: home_selected_work
+  translation: "Trabajo seleccionado"
+
+- id: home_recent_projects
+  translation: "Proyectos recientes"
+
+- id: home_recent_projects_subtitle
+  translation: "Una seleccion de proyectos que muestra como pienso y ejecuto."
+
+- id: home_view_all_projects
+  translation: "Ver todos los proyectos"
+
+- id: home_writing
+  translation: "Escritura"
+
+- id: home_latest_articles
+  translation: "Articulos recientes"
+
+- id: home_latest_articles_subtitle
+  translation: "Ideas tecnicas por escrito para que sean reutilizables."
+
+- id: home_read
+  translation: "Leer"
+
+- id: home_read_all_articles
+  translation: "Leer todos los articulos"
+
+- id: home_cta_label
+  translation: "Trabajemos juntos"

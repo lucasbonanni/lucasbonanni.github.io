@@ -1,0 +1,51 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+{{- /* Title */}}
+<title>{{ if .IsHome }}{{ .Site.Title }} — {{ .Site.Params.heroHeadline }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+
+{{- /* Meta description */}}
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary | plainify | truncate 160 }}{{ . }}{{ else }}{{ .Site.Params.heroTagline }}{{ end }}{{ end }}" />
+
+{{- /* Canonical */}}
+<link rel="canonical" href="{{ .Permalink }}" />
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+{{- end }}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+
+{{- /* Open Graph */}}
+<meta property="og:type" content="{{ if .IsHome }}website{{ else if and .IsPage (eq .Section "post") }}article{{ else if eq .Kind "term" }}profile{{ else }}website{{ end }}" />
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary | plainify | truncate 160 }}{{ . }}{{ else }}{{ .Site.Params.heroTagline }}{{ end }}{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+{{- with .Params.image }}<meta property="og:image" content="{{ . | absURL }}" />{{ else }}<meta property="og:image" content="{{ .Site.Params.heroImage | absURL }}" />{{ end }}
+{{- if .IsPage }}<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
+
+{{- /* Twitter Card */}}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}" />
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary | plainify | truncate 160 }}{{ . }}{{ else }}{{ .Site.Params.heroTagline }}{{ end }}{{ end }}" />
+{{- with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}" />{{ else }}<meta name="twitter:image" content="{{ .Site.Params.heroImage | absURL }}" />{{ end }}
+
+{{- /* Favicon */}}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/favicon.png" />
+
+{{- /* Google Fonts */}}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+
+{{- /* Brand colour overrides — injects --color-primary etc. from params.toml */}}
+{{ partial "brand-vars.html" . }}
+
+{{- /* Stylesheet (Hugo Pipes — minified + fingerprinted in production) */}}
+{{ partialCached "head/css.html" . }}
+
+{{- /* JSON-LD structured data */}}
+{{ partial "head/jsonld.html" . }}
+
+{{- /* Analytics (GA4) */}}
+{{ partial "analytics.html" . }}

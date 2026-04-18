@@ -1,0 +1,83 @@
+- id: skip_to_main
+  translation: "Skip to main content"
+
+- id: nav_main_aria
+  translation: "Main navigation"
+
+- id: home_aria
+  translation: "Home"
+
+- id: theme_dark
+  translation: "Switch to dark mode"
+
+- id: theme_light
+  translation: "Switch to light mode"
+
+- id: theme_toggle_title
+  translation: "Toggle color mode"
+
+- id: open_nav_menu
+  translation: "Open navigation menu"
+
+- id: language_switcher_aria
+  translation: "Language switcher"
+
+- id: hire_me
+  translation: "Hire me"
+
+- id: footer_navigation
+  translation: "Navigation"
+
+- id: footer_get_in_touch
+  translation: "Get in touch"
+
+- id: footer_link_linkedin
+  translation: "LinkedIn"
+
+- id: footer_link_github
+  translation: "GitHub"
+
+- id: footer_rights
+  translation: "© {{ .year }} {{ .site }}. All rights reserved."
+
+- id: footer_built_with
+  translation: "Built with Hugo & the open-gear theme."
+
+- id: home_hero_aria
+  translation: "Hero"
+
+- id: home_hero_bg_aria
+  translation: "Abstract technology background"
+
+- id: home_scroll
+  translation: "Scroll"
+
+- id: home_selected_work
+  translation: "Selected work"
+
+- id: home_recent_projects
+  translation: "Recent projects"
+
+- id: home_recent_projects_subtitle
+  translation: "A handful of engagements that illustrate how I think and deliver."
+
+- id: home_view_all_projects
+  translation: "View all projects"
+
+- id: home_writing
+  translation: "Writing"
+
+- id: home_latest_articles
+  translation: "Latest articles"
+
+- id: home_latest_articles_subtitle
+  translation: "Technical thinking, written out - so the ideas are reusable."
+
+- id: home_read
+  translation: "Read"
+
+- id: home_read_all_articles
+  translation: "Read all articles"
+
+- id: home_cta_label
+  translation: "Let's work together"

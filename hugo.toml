@@ -1,0 +1,3 @@
+# Hugo configuration — all settings live in config/_default/
+# This file is intentionally minimal.
+theme = 'open-gear'

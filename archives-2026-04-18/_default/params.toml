@@ -1,0 +1,53 @@
+# =============================================================
+# Lucas Bonanni — Site Parameters
+# Edit these values to customise the site.
+# Author data lives in content/authors/<slug>/_index.md
+# =============================================================
+
+# -------------------------------------------------
+# Brand colours
+# Injected as CSS custom properties via partials/brand-vars.html
+# primaryColorRgb must match primaryColor in "R, G, B" format
+# (used for rgba() alpha variants in CSS)
+# -------------------------------------------------
+primaryColor    = "#FF6A00"
+primaryColorRgb = "255, 106, 0"
+accentColor     = "#004F6E"
+
+# -------------------------------------------------
+# Hero (homepage)
+# -------------------------------------------------
+heroImage    = "images/hero-bg.jpg"
+heroHeadline = "Pragmatic DevOps engineering."
+heroTagline  = "Clear technical thinking at the service of concrete solutions."
+
+# -------------------------------------------------
+# Analytics — set your GA4 Measurement ID (G-XXXXXXX)
+# Leave empty to disable
+# -------------------------------------------------
+googleAnalytics = ""
+
+# -------------------------------------------------
+# Feature flags
+# -------------------------------------------------
+[features]
+  darkMode = true   # enable dark/light mode toggle
+  comments = false  # wired up in a future phase
+  search   = false  # wired up in a future phase (Pagefind)
+  math     = false  # enable KaTeX globally (or per-page via front matter)
+  mermaid  = false  # enable Mermaid globally (or per-page via front matter)
+
+# Code syntax highlight theme (any Chroma theme name)
+syntaxTheme = "dracula"
+
+# -------------------------------------------------
+# Homepage — section visibility and item counts
+# Content for howIWork and services lives in content/_index.md front matter
+# -------------------------------------------------
+[homepage]
+  showHowIWork  = true   # "How I work" 4-step process section
+  showServices  = true   # "What I can help with" services grid
+  showProjects  = true   # "Recent projects" preview (from content/project/)
+  showBlog      = true   # "Latest articles" preview (from content/post/)
+  projectsCount = 3      # number of projects to display on homepage
+  blogCount     = 3      # number of blog posts to display on homepage

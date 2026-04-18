@@ -1,0 +1,56 @@
+baseURL = 'https://lucasbonanni.com/'
+title   = 'Lucas Bonanni'
+
+defaultContentLanguage        = 'en'
+defaultContentLanguageInSubdir = true
+enableRobotsTXT               = true
+
+# -------------------------------------------------
+# Taxonomies
+# -------------------------------------------------
+[taxonomies]
+  tag      = 'tags'
+  category = 'categories'
+  author   = 'authors'
+
+# -------------------------------------------------
+# Build
+# -------------------------------------------------
+[build]
+  writeStats = true
+
+# -------------------------------------------------
+# Markup / Syntax Highlighting
+# -------------------------------------------------
+[markup]
+  [markup.highlight]
+    style          = 'dracula'
+    lineNos        = false
+    codeFences     = true
+    guessSyntax    = true
+    noClasses      = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true   # allow raw HTML in Markdown content
+
+# -------------------------------------------------
+# Output Formats
+# -------------------------------------------------
+[outputs]
+  home    = ['HTML', 'RSS', 'JSON']
+  section = ['HTML', 'RSS']
+  page    = ['HTML']
+
+# -------------------------------------------------
+# Related Content
+# -------------------------------------------------
+[related]
+  includeNewer = true
+  threshold    = 80
+  toLower      = false
+  [[related.indices]]
+    name   = 'tags'
+    weight = 100
+  [[related.indices]]
+    name   = 'categories'
+    weight = 70
