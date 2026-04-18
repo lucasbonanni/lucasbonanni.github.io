@@ -21,8 +21,10 @@
     localStorage.setItem(THEME_KEY, theme);
     // Update all toggle buttons on the page
     document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+      const darkLabel = btn.getAttribute('data-label-dark') || 'Switch to dark mode';
+      const lightLabel = btn.getAttribute('data-label-light') || 'Switch to light mode';
       btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.setAttribute('aria-label', theme === 'dark' ? lightLabel : darkLabel);
     });
   }
 

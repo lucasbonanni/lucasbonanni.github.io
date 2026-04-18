@@ -9,6 +9,10 @@
 
 {{- /* Canonical */}}
 <link rel="canonical" href="{{ .Permalink }}" />
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+{{- end }}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
 
 {{- /* Open Graph */}}
 <meta property="og:type" content="{{ if .IsHome }}website{{ else if and .IsPage (eq .Section "post") }}article{{ else if eq .Kind "term" }}profile{{ else }}website{{ end }}" />

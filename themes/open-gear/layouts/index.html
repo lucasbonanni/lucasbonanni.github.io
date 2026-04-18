@@ -11,8 +11,8 @@
 {{ $hp := .Site.Params.homepage }}
 
 <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
-<section class="hero-full" aria-label="Hero">
-  <div class="hero-full__bg" role="img" aria-label="Abstract technology background" style="background-image: url('{{ .Site.Params.heroImage | absURL }}')"></div>
+<section class="hero-full" aria-label="{{ i18n "home_hero_aria" }}">
+  <div class="hero-full__bg" role="img" aria-label="{{ i18n "home_hero_bg_aria" }}" style="background-image: url('{{ .Site.Params.heroImage | absURL }}')"></div>
   <div class="hero-full__overlay" aria-hidden="true"></div>
 
   <div class="hero-full__content">
@@ -38,7 +38,7 @@
 
   <div class="hero-full__scroll" aria-hidden="true">
     {{ partial "icon.html" "chevron-down" }}
-    <span>Scroll</span>
+    <span>{{ i18n "home_scroll" }}</span>
   </div>
 </section>
 
@@ -104,9 +104,9 @@
 <section class="section" id="projects-preview" aria-labelledby="projects-preview-title">
   <div class="container">
     <div class="section-header" data-animate>
-      <span class="section-label">Selected work</span>
-      <h2 id="projects-preview-title">Recent projects</h2>
-      <p>A handful of engagements that illustrate how I think and deliver.</p>
+      <span class="section-label">{{ i18n "home_selected_work" }}</span>
+      <h2 id="projects-preview-title">{{ i18n "home_recent_projects" }}</h2>
+      <p>{{ i18n "home_recent_projects_subtitle" }}</p>
     </div>
 
     <div class="grid-3">
@@ -138,7 +138,7 @@
 
     <div class="section-more" data-animate>
       <a href="{{ "/project/" | relURL }}" class="link-arrow">
-        View all projects
+        {{ i18n "home_view_all_projects" }}
         {{ partial "icon.html" "arrow-right" }}
       </a>
     </div>
@@ -154,9 +154,9 @@
 <section class="section section--subtle" id="articles-preview" aria-labelledby="articles-preview-title">
   <div class="container">
     <div class="section-header" data-animate>
-      <span class="section-label">Writing</span>
-      <h2 id="articles-preview-title">Latest articles</h2>
-      <p>Technical thinking, written out — so the ideas are reusable.</p>
+      <span class="section-label">{{ i18n "home_writing" }}</span>
+      <h2 id="articles-preview-title">{{ i18n "home_latest_articles" }}</h2>
+      <p>{{ i18n "home_latest_articles_subtitle" }}</p>
     </div>
 
     <div class="grid-3">
@@ -178,7 +178,7 @@
             {{ end }}
           </div>
           <a href="{{ $post.RelPermalink }}" class="article-card__read-more" aria-label="Read {{ $post.Title }}">
-            Read
+            {{ i18n "home_read" }}
             {{ partial "icon.html" "arrow-right" }}
           </a>
         </div>
@@ -188,7 +188,7 @@
 
     <div class="section-more" data-animate>
       <a href="{{ "/post/" | relURL }}" class="link-arrow">
-        Read all articles
+        {{ i18n "home_read_all_articles" }}
         {{ partial "icon.html" "arrow-right" }}
       </a>
     </div>
@@ -201,7 +201,7 @@
 {{ with $email }}
 <section class="cta-strip" aria-labelledby="cta-title">
   <div class="container">
-    <span class="section-label" style="color: rgba(var(--color-primary-rgb), 0.8);" data-animate>Let's work together</span>
+    <span class="section-label" style="color: rgba(var(--color-primary-rgb), 0.8);" data-animate>{{ i18n "home_cta_label" }}</span>
     <h2 id="cta-title" data-animate data-animate-delay="1">
       {{ $.Params.ctaHeading | default "Have a platform problem<br><em>worth solving?</em>" | safeHTML }}
     </h2>

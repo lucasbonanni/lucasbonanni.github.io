@@ -337,6 +337,40 @@ html[data-theme="dark"] .section--dark,
   gap: var(--space-xs);
 }
 
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.lang-switcher__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: background var(--transition), color var(--transition);
+}
+
+.lang-switcher__link:hover {
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+}
+
+.lang-switcher__link.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
 /* Dark mode toggle */
 .btn-theme {
   background: var(--surface);
@@ -2268,6 +2302,9 @@ html[data-theme="dark"] .footer {
   .nav__links a { padding: 0.75rem 1rem; display: block; width: 100%; }
 
   .nav__hamburger { display: flex; }
+  .lang-switcher {
+    order: 3;
+  }
 
   .grid-2 { grid-template-columns: 1fr; }
   .grid-3 { grid-template-columns: 1fr; }

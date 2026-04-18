@@ -1,16 +1,16 @@
 # =============================================================
 # Language Configuration
-# Spanish (es) is scaffolded here but disabled until Phase 9.
+# Bilingual setup with language subdirectories enabled.
 # =============================================================
 
 [en]
   languageCode = 'en'
   languageName = 'English'
   weight       = 1
+  contentDir   = 'content/en'
 
 [es]
   languageCode = 'es'
   languageName = 'Español'
   weight       = 2
-  disabled     = true   # remove this line in Phase 9
   contentDir   = 'content/es'

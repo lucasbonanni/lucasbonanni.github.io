@@ -1,7 +1,7 @@
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<nav class="nav" role="navigation" aria-label="{{ i18n "nav_main_aria" }}">
   <div class="nav__inner">
     {{- /* Logo */}}
-    <a href="{{ "/" | relLangURL }}" class="nav__logo" aria-label="{{ .Site.Title }} — Home">
+    <a href="{{ "/" | relLangURL }}" class="nav__logo" aria-label="{{ .Site.Title }} — {{ i18n "home_aria" }}">
       <svg class="nav__logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <circle cx="18" cy="18" r="17" stroke="var(--color-primary)" stroke-width="2"/>
         <circle cx="18" cy="18" r="8" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
@@ -30,9 +30,11 @@
       <button
         class="btn-theme"
         data-theme-toggle
+        data-label-dark="{{ i18n "theme_dark" }}"
+        data-label-light="{{ i18n "theme_light" }}"
         aria-pressed="false"
-        aria-label="Switch to dark mode"
-        title="Toggle color mode"
+        aria-label="{{ i18n "theme_dark" }}"
+        title="{{ i18n "theme_toggle_title" }}"
       >
         <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -45,11 +47,35 @@
           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
       </button>
-      <a href="{{ "/contact/" | relLangURL }}" class="btn btn-primary" style="padding:0.55rem 1.15rem;font-size:0.88rem;">Hire me</a>
+
+      {{- /* Language switcher: prefer same-page translation; fallback to language homepage */}}
+      <div class="lang-switcher" aria-label="{{ i18n "language_switcher_aria" }}">
+        {{- $page := . -}}
+        {{- range .Site.Languages }}
+          {{- $lang := .Lang -}}
+          {{- $target := "" -}}
+          {{- if eq $lang $page.Lang -}}
+            {{- $target = $page.RelPermalink -}}
+          {{- else -}}
+            {{- with index (where $page.AllTranslations "Lang" $lang) 0 -}}
+              {{- $target = .RelPermalink -}}
+            {{- else -}}
+              {{- with index (where $page.Site.Home.AllTranslations "Lang" $lang) 0 -}}
+                {{- $target = .RelPermalink -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+          {{- if $target -}}
+            <a href="{{ $target }}" class="lang-switcher__link{{ if eq $lang $page.Lang }} active{{ end }}" lang="{{ $lang }}" hreflang="{{ $lang }}"{{ if eq $lang $page.Lang }} aria-current="true"{{ end }}>{{ .LanguageName }}</a>
+          {{- end -}}
+        {{- end }}
+      </div>
+
+      <a href="{{ "/contact/" | relLangURL }}" class="btn btn-primary" style="padding:0.55rem 1.15rem;font-size:0.88rem;">{{ i18n "hire_me" }}</a>
     </div>
 
     {{- /* Mobile hamburger */}}
-    <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+    <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="{{ i18n "open_nav_menu" }}">
       <span></span><span></span><span></span>
     </button>
   </div>

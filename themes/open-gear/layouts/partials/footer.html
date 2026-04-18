@@ -38,7 +38,7 @@
 
     {{- /* Nav column */}}
     <div class="footer__col">
-      <h4>Navigation</h4>
+      <h4>{{ i18n "footer_navigation" }}</h4>
       <ul>
         {{- range .Site.Menus.footer }}
         <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
@@ -49,7 +49,7 @@
     {{- /* Contact column — pull from first author */}}
     {{- $author := index (.Site.Taxonomies.authors.ByCount) 0 }}
     <div class="footer__col">
-      <h4>Get in touch</h4>
+      <h4>{{ i18n "footer_get_in_touch" }}</h4>
       <ul>
         {{- with $author }}
           {{- $p := .Page }}
@@ -57,10 +57,10 @@
           <li><a href="mailto:{{ . }}">{{ . }}</a></li>
           {{- end }}
           {{- with $p.Params.socials.linkedin }}
-          <li><a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "footer_link_linkedin" }}</a></li>
           {{- end }}
           {{- with $p.Params.socials.github }}
-          <li><a href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "footer_link_github" }}</a></li>
           {{- end }}
         {{- end }}
       </ul>
@@ -68,7 +68,7 @@
 
   </div>
   <div class="footer__bottom">
-    <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
-    <p>Built with Hugo &amp; the open-gear theme.</p>
+    <p>{{ i18n "footer_rights" (dict "year" now.Year "site" .Site.Title) }}</p>
+    <p>{{ i18n "footer_built_with" }}</p>
   </div>
 </footer>
